@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejsdbapp
+  labels:
+    app: nodejsdbapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejsdbapp
+  template:
+    metadata:
+      labels:
+        app: nodejsdbapp
+    spec:
+      containers:
+      - name: nodejsdbapp
+        image: dheeraj394/node-mongo-db:01
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_URL
+          value: "mongodb://localhost:27017/mydb"
+
+      - name: mongodb
+        image: mongo
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: mongo-data
+          mountPath: /data/db
+
+      volumes:
+      - name: mongo-data
+        emptyDir: {}  # Use PersistentVolume for production
