@@ -6,18 +6,21 @@ A simple Node.js + MongoDB email collection app deployed on Kubernetes using Met
 
 ## 🧰 Project Structure
 
-```bash
 k8s-db-demo-app/
-├── deployment.yaml         # Node.js app Deployment with ConfigMap-based env
-├── service.yaml            # LoadBalancer type Service for external access
-├── configmap.yaml          # MongoDB connection and port details
-├── metallb/
-│   ├── ipaddresspool.yaml  # MetalLB IP address pool definition
-│   └── l2advertisement.yaml # MetalLB Layer 2 advertisement
-├── index.js                # Main Node.js server file
-├── index.html              # Frontend for submitting & listing emails
-├── Dockerfile              # Docker build file for the Node.js app
-└── README.md               # Project documentation
+├── argocd/
+│   └── nodejsapp-argocd.yaml            # ArgoCD application definition
+├── k8s-manifest/
+│   ├── mongo-configmap.yaml             # MongoDB connection and port details
+│   ├── mongo-db-service.yaml            # MongoDB service definition
+│   ├── mongo-db.deployment.yaml         # MongoDB deployment
+│   ├── Namespace.yaml                   # Custom namespace for the app
+│   ├── nodejsapp-deployment.yaml        # Node.js app deployment
+│   └── service.yaml                     # LoadBalancer service for Node.js app
+├── index.js                             # Node.js server
+├── index.html                           # HTML form to collect and view emails
+├── Dockerfile                           # Dockerfile for the Node.js app
+└── README.md                            # Project documentation
+
 
 
 
