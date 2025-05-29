@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nodejsdbapp
-        image: dheeraj394/node-mongo-db:02
+        image: dheeraj394/node-mongo-db:03
         ports:
         - containerPort: 3000
         env:
