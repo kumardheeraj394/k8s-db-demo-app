@@ -1,3 +1,4 @@
+# mongo-db.deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,4 +25,5 @@ spec:
           mountPath: /data/db
       volumes:
       - name: mongo-data
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: mongo-pvc
