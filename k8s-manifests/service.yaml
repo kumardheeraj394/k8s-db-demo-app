@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejsdbapp
+spec:
+  selector:
+    app: nodejsdbapp
+  type: LoadBalancer
+  loadBalancerIP: 10.10.37.249
+  ports:
+    - protocol: TCP
+      port: 3002
+      targetPort: 3000
