@@ -128,17 +128,17 @@ spec:
 Check the external IP assigned:
 
 ```bash
-kubectl get svc nodejsdbapp-service
+kubectl get svc -n nodejsdbapp
 ```
 
 Example output:
 
 ```
 NAME                  TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)           AGE
-nodejsdbapp-service   LoadBalancer   10.96.132.20   10.10.37.249    3002:31888/TCP    10m
+nodejsdbapp   LoadBalancer   10.96.132.20   10.10.37.249    3002:31888/TCP    10m
 ```
 
-Open in browser: `http://10.10.37.249`
+Open in browser: `http://10.10.37.249:3002`
 
 ---
 
