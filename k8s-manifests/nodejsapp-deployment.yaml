@@ -21,16 +21,4 @@ spec:
         - containerPort: 3000
         env:
         - name: MONGO_URL
-          value: "mongodb://localhost:27017/mydb"
-
-      - name: mongodb
-        image: mongo
-        ports:
-        - containerPort: 27017
-        volumeMounts:
-        - name: mongo-data
-          mountPath: /data/db
-
-      volumes:
-      - name: mongo-data
-        emptyDir: {}  # Use PersistentVolume for production
+          value: mongodb://mongodb:27017/mydb
