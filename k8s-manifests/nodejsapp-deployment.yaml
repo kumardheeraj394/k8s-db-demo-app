@@ -25,3 +25,15 @@ spec:
             configMapKeyRef:
               name: mongo-config
               key: MONGO_URL
+        - name: MONGO_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: MONGO_PORT
+         - name: MONGO_DB
+           valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: MONGO_DB
+        - name: PORT
+          value: "3000"   # your app port (optional)
