@@ -186,3 +186,9 @@ kubectl delete -f k8s-manifest/mongo-configmap.yaml
 kubectl delete -f metallb/ipaddresspool.yaml
 kubectl delete -f metallb/l2advertisement.yaml
 ```
+## 9 deploy using argocd
+firstly setup argocd within cluster
+Execute Below command
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kumardheeraj394/k8s-db-demo-app/main/argocd/nodejsapp-argocd.yaml
+```
