@@ -1,23 +1,25 @@
-# mongo-pv.yaml
-apiVersion: v1
-kind: PersistentVolume
+# Define a PersistentVolume resource
+apiVersion: v1                           # Kubernetes API version
+kind: PersistentVolume                  # Resource type: PersistentVolume (PV)
 metadata:
-  name: mongo-pv
+  name: mongo-pv                       # Name of the PersistentVolume
 spec:
   capacity:
-    storage: 1Gi
+    storage: 1Gi                      # Storage capacity requested (1 Gigabyte)
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce                   # Access mode: volume can be mounted as read-write by a single node
   hostPath:
-    path: /mnt/data/mongodb
+    path: /mnt/data/mongodb           # Path on the host machine where data will be stored
+
 ---
+# Define a PersistentVolumeClaim resource to claim storage from the PersistentVolume
 apiVersion: v1
-kind: PersistentVolumeClaim
+kind: PersistentVolumeClaim            # Resource type: PersistentVolumeClaim (PVC)
 metadata:
-  name: mongo-pvc
+  name: mongo-pvc                     # Name of the PVC (used by pods to request storage)
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce                   # Access mode requested; must match PV access mode
   resources:
     requests:
-      storage: 1Gi
+      storage: 1Gi                   # Amount of storage requested (1 Gigabyte)
