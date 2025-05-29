@@ -5,8 +5,12 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Use full MongoDB URL from env
-const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/mydb';
+// Compose the Mongo URL dynamically from env variables
+const mongoHost = process.env.MONGO_HOST || 'localhost';
+const mongoPort = process.env.MONGO_PORT || '27017';
+const mongoDb = process.env.MONGO_DB || 'mydb';
+
+const mongoUrl = `mongodb://${mongoHost}:${mongoPort}/${mongoDb}`;
 
 // Connect to MongoDB
 mongoose.connect(mongoUrl, {
