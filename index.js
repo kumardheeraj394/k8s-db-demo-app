@@ -5,13 +5,16 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Use full MongoDB URL from env
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/mydb';
+
 // Connect to MongoDB
-mongoose.connect('mongodb://mongodb:27017/yourDatabaseName', {
+mongoose.connect(mongoUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-// Create a Mongoose model
+// Define Mongoose model
 const Email = mongoose.model('Email', {
     email: String,
 });
@@ -45,13 +48,6 @@ app.get('/emails', async (req, res) => {
     }
 });
 
-app.get('/exit', (req, res) => {
-    // Perform actions to stop the server or any other desired actions
-    res.send('Server stopped');
-    process.exit(0); // This stops the server (not recommended in production)
-});
-
-// Start server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
