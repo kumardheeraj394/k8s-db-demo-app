@@ -1,13 +1,14 @@
-apiVersion: v1
-kind: Service
+apiVersion: v1                   # Specifies the Kubernetes API version
+kind: Service                    # Declares a Service resource
 metadata:
-  name: nodejsdbapp
+  name: nodejsdbapp              # Name of the Service object
 spec:
   selector:
-    app: nodejsdbapp
-  type: LoadBalancer
-  loadBalancerIP: 10.10.37.249
+    app: nodejsdbapp             # This service targets pods with the label 'app: nodejsdbapp'
+  type: LoadBalancer             # Exposes the service externally using a cloud provider's load balancer
+  loadBalancerIP: 10.10.37.249   # Assigns a specific external IP to the load balancer (static IP reservation needed)
   ports:
-    - protocol: TCP
-      port: 3002
-      targetPort: 3000
+    - protocol: TCP              # Specifies the protocol (TCP)
+      port: 3002                 # The port on which the service will be exposed externally
+      targetPort: 3000           # The port on which the application (inside the container) is listening
+
