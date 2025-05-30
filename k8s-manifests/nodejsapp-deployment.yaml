@@ -1,30 +1,30 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps/v1             # Uses the 'apps/v1' API version, required for Deployments
+kind: Deployment                # Declares a Deployment resource, which manages Pods
 metadata:
-  name: nodejsdbapp
+  name: nodejsdbapp             # Name of the Deployment
   labels:
-    app: nodejsdbapp
+    app: nodejsdbapp            # Labels help group and select this app
 spec:
-  replicas: 2
+  replicas: 2                   # Number of Pod replicas to maintain for load balancing/high availability
   selector:
     matchLabels:
-      app: nodejsdbapp
+      app: nodejsdbapp          # Selector matches Pods with this label (must match template.labels)
   template:
     metadata:
       labels:
-        app: nodejsdbapp
+        app: nodejsdbapp        # Labels assigned to Pods created by this Deployment
     spec:
       containers:
-      - name: nodejsdbapp
-        image: dheeraj394/node-mongo-db:01
+      - name: nodejsdbapp       # Name of the container running inside the Pod
+        image: dheeraj394/node-mongo-db:01  # Docker image to run for this container
         ports:
-        - containerPort: 3000
+        - containerPort: 3000   # Container listens on port 3000 (same as app's server port)
         env:
         - name: MONGO_URL
           valueFrom:
             configMapKeyRef:
-              name: mongo-config
-              key: MONGO_URL
+              name: mongo-config    # Reference to the ConfigMap named 'mongo-config'
+              key: MONGO_URL        # Gets the value of MONGO_URL from the ConfigMap
         - name: MONGO_PORT
           valueFrom:
             configMapKeyRef:
@@ -32,8 +32,8 @@ spec:
               key: MONGO_PORT
         - name: MONGO_DB
           valueFrom:
-           configMapKeyRef:
-             name: mongo-config
-             key: MONGO_DB
+            configMapKeyRef:
+              name: mongo-config
+              key: MONGO_DB
         - name: PORT
-          value: "3000"   # your app port (optional)
+          value: "3000"         # Sets an environment variable PORT to 3000 for the app
