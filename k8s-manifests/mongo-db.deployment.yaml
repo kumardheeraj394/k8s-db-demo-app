@@ -1,29 +1,32 @@
 # mongo-db.deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps/v1              # API version for Deployment resources
+kind: Deployment                 # Declares a Deployment, which manages pod replicas
 metadata:
-  name: mongodb
+  name: mongodb                  # Name of the Deployment
   labels:
-    app: mongodb
+    app: mongodb                 # Labels used to identify this Deployment
+
 spec:
-  replicas: 1
+  replicas: 1                    # Only one pod will be created (can be increased for HA scenarios)
   selector:
     matchLabels:
-      app: mongodb
-  template:
+      app: mongodb               # Matches pods with this label to manage them under this Deployment
+
+  template:                      # Pod template specification
     metadata:
       labels:
-        app: mongodb
+        app: mongodb             # Labels assigned to the pod (must match selector above)
     spec:
       containers:
-      - name: mongodb
-        image: mongo
+      - name: mongodb            # Name of the container
+        image: mongo             # Docker image to use for MongoDB
         ports:
-        - containerPort: 27017
+        - containerPort: 27017   # Exposes MongoDB default port inside the container
         volumeMounts:
-        - name: mongo-data
-          mountPath: /data/db
+        - name: mongo-data       # Mounts the volume named `mongo-data`
+          mountPath: /data/db    # Mount point inside the container where MongoDB stores its data
+
       volumes:
-      - name: mongo-data
+      - name: mongo-data         # Volume definition referenced above in volumeMounts
         persistentVolumeClaim:
-          claimName: mongo-pvc
+          claimName: mongo-pvc   # Uses the PersistentVolumeClaim named `mongo-pvc`
