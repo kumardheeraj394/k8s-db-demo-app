@@ -1,39 +1,39 @@
-apiVersion: apps/v1             # Uses the 'apps/v1' API version, required for Deployments
-kind: Deployment                # Declares a Deployment resource, which manages Pods
+apiVersion: apps/v1               # API version for Deployment resource
+kind: Deployment                  # This resource is a Deployment, which manages Pods
 metadata:
-  name: nodejsdbapp             # Name of the Deployment
+  name: nodejsdbapp               # Name of the Deployment
   labels:
-    app: nodejsdbapp            # Labels help group and select this app
+    app: nodejsdbapp              # Labels to identify this Deployment and its Pods
 spec:
-  replicas: 2                   # Number of Pod replicas to maintain for load balancing/high availability
+  replicas: 2                     # Number of Pod replicas to run
   selector:
     matchLabels:
-      app: nodejsdbapp          # Selector matches Pods with this label (must match template.labels)
+      app: nodejsdbapp            # Selector to match Pods managed by this Deployment
   template:
     metadata:
       labels:
-        app: nodejsdbapp        # Labels assigned to Pods created by this Deployment
+        app: nodejsdbapp          # Labels assigned to Pods created by this Deployment
     spec:
       containers:
-      - name: nodejsdbapp       # Name of the container running inside the Pod
-        image: dheeraj394/node-mongo-db:01  # Docker image to run for this container
+      - name: nodejsdbapp         # Container name inside the Pod
+        image: dheeraj394/node-mongo-db:01  # Docker image for the app container
         ports:
-        - containerPort: 3000   # Container listens on port 3000 (same as app's server port)
-        env:
-        - name: MONGO_URL
+        - containerPort: 3000     # Container listens on port 3000
+        env:                      # Environment variables injected into the container
+        - name: MONGO_HOST        # MongoDB hostname, matches key in ConfigMap
           valueFrom:
             configMapKeyRef:
-              name: mongo-config    # Reference to the ConfigMap named 'mongo-config'
-              key: MONGO_URL        # Gets the value of MONGO_URL from the ConfigMap
-        - name: MONGO_PORT
+              name: mongo-config  # Refers to ConfigMap named 'mongo-config'
+              key: MONGO_HOST    # Key in ConfigMap to get value from
+        - name: MONGO_PORT        # MongoDB port number, from ConfigMap
           valueFrom:
             configMapKeyRef:
               name: mongo-config
               key: MONGO_PORT
-        - name: MONGO_DB
+        - name: MONGO_DB          # MongoDB database name, from ConfigMap
           valueFrom:
             configMapKeyRef:
               name: mongo-config
               key: MONGO_DB
-        - name: PORT
-          value: "3000"         # Sets an environment variable PORT to 3000 for the app
+        - name: PORT              # Application port, fixed as 3000 here
+          value: "3000"
