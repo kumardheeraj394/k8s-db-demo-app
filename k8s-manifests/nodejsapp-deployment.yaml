@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nodejsdbapp         # Container name inside the Pod
-        image: dheeraj394/node-mongo-db:02  # Docker image for the app container
+        image: dheeraj394/node-mongo-db:03  # Docker image for the app container
         ports:
         - containerPort: 3000     # Container listens on port 3000
         env:                      # Environment variables injected into the container
