@@ -1,4 +1,4 @@
-apiVersion: v1
-kind: Namespace
+apiVersion: v1               # API version for core Kubernetes resources
+kind: Namespace              # Declares a Namespace resource
 metadata:
-  name: nodejsdbapp
+  name: nodejsdbapp          # Name of the namespace to be created
