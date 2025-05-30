@@ -1,8 +1,9 @@
-apiVersion: v1
-kind: ConfigMap
+# This defines a ConfigMap resource in Kubernetes
+apiVersion: v1                     # API version used for the resource
+kind: ConfigMap                    # Resource type: ConfigMap
 metadata:
-  name: mongo-config
+  name: mongo-config              # Name of the ConfigMap (used to reference it in pods, etc.)
 data:
-  MONGO_HOST: "mongodb"
-  MONGO_PORT: "27017"
-  MONGO_DB: "mydb"
+  MONGO_HOST: "mongodb"           # Environment variable key and value; here 'mongodb' is the expected service name or hostname of the MongoDB container
+  MONGO_PORT: "27017"             # MongoDB port number, as a string
+  MONGO_DB: "mydb"                # Name of the MongoDB database to use
