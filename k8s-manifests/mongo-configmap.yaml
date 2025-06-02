@@ -5,7 +5,8 @@ metadata:
   labels:
     app: nodejsdbapp
 data:
-  MONGO_HOST: "mongodb-0.mongodb"   # For the first pod in the StatefulSet
+  MONGO_HOST: "mongodb.mongodb"
   MONGO_PORT: "27017"
   MONGO_DB: "mydb"
+
 
