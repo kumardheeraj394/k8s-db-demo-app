@@ -1,16 +1,14 @@
-# This file defines a Service in Kubernetes to expose the MongoDB pod internally
-apiVersion: v1                 # Specifies the API version (v1 is stable and commonly used for core resources)
-kind: Service                  # Resource type: Service
-
+apiVersion: v1
+kind: Service
 metadata:
-  name: mongodb                # Name of the service. Other pods will use this name to connect (e.g., MONGO_HOST: mongodb)
+  name: mongodb
   labels:
-    app: mongodb              # Labels help identify and group related resources
+    app: mongodb
 
 spec:
+  clusterIP: None                # Headless service to enable stable DNS for StatefulSet
   ports:
-  - port: 27017               # Port that the service exposes internally within the cluster
-    targetPort: 27017         # Port on the pod that the service forwards traffic to (MongoDB listens on this port)
-  
+  - port: 27017
+    targetPort: 27017
   selector:
-    app: mongodb              # Selector matches pods with this label (app: mongodb), routing traffic to them
+    app: mongodb
