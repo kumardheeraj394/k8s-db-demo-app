@@ -1,17 +1,12 @@
-# Remove PersistentVolume; dynamic provisioning will handle PV creation
-
----
-# PersistentVolumeClaim with dynamic provisioning using local-path storage class
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mongo-pvc
-  namespace: nodejsdbapp       # Add your namespace here
+  namespace: nodejsdbapp
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  storageClassName: local-path  # Use the dynamic provisioner StorageClass
-  volumeMode: Filesystem
+  storageClassName: local-path   # Use your dynamic provisioner's StorageClass name here
