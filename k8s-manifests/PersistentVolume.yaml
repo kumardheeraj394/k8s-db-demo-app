@@ -1,31 +1,17 @@
-# Define a PersistentVolume resource
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mongo-pv
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: manual
-  volumeMode: Filesystem
-  hostPath:
-    path: /mnt/data/mongodb
+# Remove PersistentVolume; dynamic provisioning will handle PV creation
 
 ---
-# Define a PersistentVolumeClaim resource to claim storage from the PersistentVolume
+# PersistentVolumeClaim with dynamic provisioning using local-path storage class
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mongo-pvc
-  # add namespace if not default, e.g. namespace: your-namespace
+  namespace: nodejsdbapp       # Add your namespace here
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  storageClassName: manual
+  storageClassName: local-path  # Use the dynamic provisioner StorageClass
   volumeMode: Filesystem
