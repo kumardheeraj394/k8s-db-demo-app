@@ -132,7 +132,30 @@ kubectl logs <pod-name> -n <namespace>
 - Use with PVCs and Headless Services for stable identity and storage.  
 - Common for databases like MongoDB, MySQL clusters.
 
----
+### Diagram: StatefulSets with PVCs and Headless Service
+
+```plaintext
++-----------------------------------------------------------+
+|                       Kubernetes Cluster                  |
+|                                                           |
+|   +-----------------+        +-----------------+          |
+|   | StatefulSet Pod |        | StatefulSet Pod |          |
+|   | (mongo-0)       |        | (mongo-1)       |          |
+|   |  +-----------+  |        |  +-----------+  |          |
+|   |  | Container |  |        |  | Container |  |          |
+|   |  +-----------+  |        |  +-----------+  |          |
+|   |  Persistent    |        |  Persistent    |          |
+|   |  Volume Claim  |        |  Volume Claim  |          |
+|   |  (mongo-pvc-0) |        |  (mongo-pvc-1) |          |
+|   +-------+---------+        +--------+--------+          |
+|           |                           |                   |
+|           |                           |                   |
+|        +--+---------------------------+--+                |
+|        |        Headless Service           |              |
+|        |  (stable network identity DNS)   |              |
+|        +----------------------------------+              |
+|                                                           |
++-----------------------------------------------------------+
 
 ## 8. Job & CronJobs
 
