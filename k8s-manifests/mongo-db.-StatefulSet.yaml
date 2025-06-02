@@ -6,7 +6,7 @@ metadata:
     app: mongodb
 
 spec:
-  serviceName: "mongodb"         # This must match the headless service name
+  serviceName: "mongodb"
   replicas: 2
   selector:
     matchLabels:
@@ -24,9 +24,13 @@ spec:
         - containerPort: 27017
         volumeMounts:
         - name: mongo-data
-          mountPath: /data/db    # MongoDB stores its data here
+          mountPath: /data/db
 
-      volumes:
-      - name: mongo-data
-        persistentVolumeClaim:
-          claimName: mongo-pvc   # Referencing your pre-created PVC
+  volumeClaimTemplates:                # <--- Add this section
+  - metadata:
+      name: mongo-data                # This name matches the volumeMounts name above
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
