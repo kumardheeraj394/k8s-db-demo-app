@@ -138,7 +138,7 @@ kubectl logs <pod-name> -n <namespace>
 
 # 8. DaemonSet
 
-DaemonSet ensures that a copy of a pod runs on all (or some) nodes in the cluster.
+A **DaemonSet** ensures that a copy of a pod runs on all (or some) nodes in the cluster.
 
 Useful for running cluster-wide services such as log collectors, monitoring agents, or network plugins.
 
@@ -147,24 +147,24 @@ When a new node is added, the DaemonSet automatically schedules a pod on it.
 ### Diagram: DaemonSet Pods running on all nodes
 
 +-----------------------------------------------------------+
-|                      Kubernetes Cluster                   |
-|                                                           |
-|   +------------+    +------------+    +------------+      |
-|   |   Node 1   |    |   Node 2   |    |   Node 3   |      |
-|   | +--------+ |    | +--------+ |    | +--------+ |      |
-|   | | Daemon | |    | | Daemon | |    | | Daemon | |      |
-|   | | Pod    | |    | | Pod    | |    | | Pod    | |      |
-|   | +--------+ |    | +--------+ |    | +--------+ |      |
-|   +------------+    +------------+    +------------+      |
-|                                                           |
+| Kubernetes Cluster |
+| |
+| +------------+ +------------+ +------------+ |
+| | Node 1 | | Node 2 | | Node 3 | |
+| | +--------+ | | +--------+ | | +--------+ | |
+| | | Daemon | | | | Daemon | | | | Daemon | | |
+| | | Pod | | | | Pod | | | | Pod | | |
+| | +--------+ | | +--------+ | | +--------+ | |
+| +------------+ +------------+ +------------+ |
+| |
 +-----------------------------------------------------------+
-
 
 sql
 Copy
 Edit
 
-# 9. Static pod
+# 9. Static Pod
+
 
 Static pods are managed directly by the kubelet on a node and are not part of the Kubernetes API server management. They are typically used for system components and run independently of the scheduler.
 
