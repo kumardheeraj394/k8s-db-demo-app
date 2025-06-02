@@ -134,14 +134,51 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
-## 8. Job & CronJobs
+# 8. DaemonSet
+
+DaemonSet ensures that a copy of a pod runs on all (or some) nodes in the cluster.
+
+Useful for running cluster-wide services such as log collectors, monitoring agents, or network plugins.
+
+When a new node is added, the DaemonSet automatically schedules a pod on it.
+
+### Diagram: DaemonSet Pods running on all nodes
+
++-----------------------------------------------------------+
+| Kubernetes Cluster |
+| |
+| +------------+ +------------+ +------------+ |
+| | Node 1 | | Node 2 | | Node 3 | |
+| | +--------+ | | +--------+ | | +--------+ | |
+| | | Daemon | | | | Daemon | | | | Daemon | | |
+| | | Pod | | | | Pod | | | | Pod | | |
+| | +--------+ | | +--------+ | | +--------+ | |
+| +------------+ +------------+ +------------+ |
+| |
++-----------------------------------------------------------+
+
+sql
+Copy
+Edit
+
+# 9. Static pod
+
+Static pods are managed directly by the kubelet on a node and are not part of the Kubernetes API server management. They are typically used for system components and run independently of the scheduler.
+
+# 10. Job & CronJobs
+
+- **Job:** One-time batch tasks that run to completion.  
+- **CronJobs:** Scheduled tasks that run periodically similar to cron jobs.
+
+
+## 11. Job & CronJobs
 
 - **Jobs:** One-time batch tasks.  
 - **CronJobs:** Scheduled tasks similar to cron.
 
 ---
 
-## 9. Helm (Package Manager)
+## 12. Helm (Package Manager)
 
 - What is Helm? Kubernetes package manager.  
 - Helm Charts: Packages of pre-configured Kubernetes resources.  
