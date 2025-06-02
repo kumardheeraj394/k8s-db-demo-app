@@ -165,8 +165,8 @@ Edit
 
 # 9. Static Pod
 
-
-Static pods are managed directly by the kubelet on a node and are not part of the Kubernetes API server management. They are typically used for system components and run independently of the scheduler.
+**Static Pods** are managed directly by the `kubelet` on a node and are not visible through the Kubernetes API server.  
+They are typically used for system-level components and run independently of the Kub
 
 # 10. Job & CronJobs
 
