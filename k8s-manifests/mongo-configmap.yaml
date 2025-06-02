@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: mongo-config
 data:
-  MONGO_HOST: "mongodb"   # This should match the MongoDB service name in your cluster
+  MONGO_HOST: "mongodb-0.mongodb"   # This should match the MongoDB service name in your cluster
   MONGO_PORT: "27017"
   MONGO_DB: "mydb"
