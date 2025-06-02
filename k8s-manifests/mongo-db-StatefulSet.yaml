@@ -26,11 +26,12 @@ spec:
         - name: mongo-data
           mountPath: /data/db
 
-  volumeClaimTemplates:                # <--- Add this section
+  volumeClaimTemplates:
   - metadata:
-      name: mongo-data                # This name matches the volumeMounts name above
+      name: mongo-data
     spec:
       accessModes: ["ReadWriteOnce"]
+      storageClassName: local-path       # Explicitly specify your StorageClass here
       resources:
         requests:
           storage: 1Gi
