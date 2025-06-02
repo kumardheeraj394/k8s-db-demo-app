@@ -140,7 +140,7 @@ kubectl logs <pod-name> -n <namespace>
 |                                                           |
 |   +-----------------+        +-----------------+          |
 |   | StatefulSet Pod |        | StatefulSet Pod |          |
-|   | (mongo-0)       |        | (mongo-1)       |          |
+|   | (mongodb-0)       |        | (mongodb-1)       |          |
 |   |  +-----------+  |        |  +-----------+  |          |
 |   |  | Container |  |        |  | Container |  |          |
 |   |  +-----------+  |        |  +-----------+  |          |
