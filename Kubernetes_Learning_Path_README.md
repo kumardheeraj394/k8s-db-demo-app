@@ -146,10 +146,10 @@ When a new node is added, the DaemonSet automatically schedules a pod on it.
 
 ### Diagram: DaemonSet Pods running on all nodes
 
-+-----------------------------------------------------------+
+
 | Kubernetes Cluster |
-| |
-| +------------+ +------------+ +------------+ |
+
+
 | | Node 1 | | Node 2 | | Node 3 | |
 | | +--------+ | | +--------+ | | +--------+ | |
 | | | Daemon | | | | Daemon | | | | Daemon | | |
@@ -157,11 +157,8 @@ When a new node is added, the DaemonSet automatically schedules a pod on it.
 | | +--------+ | | +--------+ | | +--------+ | |
 | +------------+ +------------+ +------------+ |
 | |
-+-----------------------------------------------------------+
 
-sql
-Copy
-Edit
+
 
 # 9. Static Pod
 
