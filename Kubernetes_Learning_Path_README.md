@@ -158,7 +158,7 @@ kubectl logs <pod-name> -n <namespace>
 |                                                           |
 +-----------------------------------------------------------+
 
-## 8. DaemonSet
+## 7. DaemonSet
 
 - **DaemonSet:** Ensures that a copy of a pod runs on all (or some) nodes in the cluster.  
 - Useful for running cluster-wide services such as log collectors, monitoring agents, or network plugins.  
