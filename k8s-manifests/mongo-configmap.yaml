@@ -2,7 +2,10 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mongo-config
+  labels:
+    app: nodejsdbapp
 data:
-  MONGO_HOST: "mongodb-0.mongodb"   # This should match the MongoDB service name in your cluster
+  MONGO_HOST: "mongodb-0.mongodb"   # For the first pod in the StatefulSet
   MONGO_PORT: "27017"
   MONGO_DB: "mydb"
+
