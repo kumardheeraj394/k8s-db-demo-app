@@ -13,14 +13,16 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 4. Services & Networking  
 5. Config & Secrets Management  
 6. Volumes & Storage  
-7. Stateful Applications  
-8. Job & CronJobs  
-9. Helm (Package Manager)  
-10. Security & RBAC  
-11. Observability: Logging & Monitoring  
-12. CI/CD Integration  
-13. Advanced Topics  
-14. Real World Scenarios / Projects  
+7. Stateful Applications
+8. DaemonSet
+9. StaticPod 
+10. Job & CronJobs  
+11. Helm (Package Manager)  
+12. Security & RBAC  
+13. Observability: Logging & Monitoring  
+14. CI/CD Integration  
+15. Advanced Topics  
+16. Real World Scenarios / Projects  
 
 ---
 
@@ -145,17 +147,18 @@ When a new node is added, the DaemonSet automatically schedules a pod on it.
 ### Diagram: DaemonSet Pods running on all nodes
 
 +-----------------------------------------------------------+
-| Kubernetes Cluster |
-| |
-| +------------+ +------------+ +------------+ |
-| | Node 1 | | Node 2 | | Node 3 | |
-| | +--------+ | | +--------+ | | +--------+ | |
-| | | Daemon | | | | Daemon | | | | Daemon | | |
-| | | Pod | | | | Pod | | | | Pod | | |
-| | +--------+ | | +--------+ | | +--------+ | |
-| +------------+ +------------+ +------------+ |
-| |
+|                      Kubernetes Cluster                   |
+|                                                           |
+|   +------------+    +------------+    +------------+      |
+|   |   Node 1   |    |   Node 2   |    |   Node 3   |      |
+|   | +--------+ |    | +--------+ |    | +--------+ |      |
+|   | | Daemon | |    | | Daemon | |    | | Daemon | |      |
+|   | | Pod    | |    | | Pod    | |    | | Pod    | |      |
+|   | +--------+ |    | +--------+ |    | +--------+ |      |
+|   +------------+    +------------+    +------------+      |
+|                                                           |
 +-----------------------------------------------------------+
+
 
 sql
 Copy
@@ -187,7 +190,7 @@ Static pods are managed directly by the kubelet on a node and are not part of th
 
 ---
 
-## 10. Security & RBAC
+## 13. Security & RBAC
 
 - Role-Based Access Control (RBAC)  
 - Service Accounts  
@@ -196,7 +199,7 @@ Static pods are managed directly by the kubelet on a node and are not part of th
 
 ---
 
-## 11. Observability: Logging & Monitoring
+## 14. Observability: Logging & Monitoring
 
 - livenessProbe and readinessProbe for pod health  
 - Logs via `kubectl logs`  
@@ -206,7 +209,7 @@ Static pods are managed directly by the kubelet on a node and are not part of th
 
 ---
 
-## 12. CI/CD Integration
+## 15. CI/CD Integration
 
 - GitOps with ArgoCD  
 - Jenkins + Kubernetes pipelines  
@@ -214,7 +217,7 @@ Static pods are managed directly by the kubelet on a node and are not part of th
 
 ---
 
-## 13. Advanced Topics
+## 16. Advanced Topics
 
 - Taints and Tolerations  
 - Node Affinity / Anti-affinity  
@@ -225,7 +228,7 @@ Static pods are managed directly by the kubelet on a node and are not part of th
 
 ---
 
-## 14. Real World Scenarios / Projects
+## 17. Real World Scenarios / Projects
 
 - Deploying Node.js + MongoDB application  
 - Running WordPress + MySQL  
