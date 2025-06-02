@@ -13,14 +13,15 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 4. Services & Networking  
 5. Config & Secrets Management  
 6. Volumes & Storage  
-7. Stateful Applications  
-8. Job & CronJobs  
-9. Helm (Package Manager)  
-10. Security & RBAC  
-11. Observability: Logging & Monitoring  
-12. CI/CD Integration  
-13. Advanced Topics  
-14. Real World Scenarios / Projects  
+7. Stateful Applications
+8. Daemonset  
+9. Job & CronJobs  
+10. Helm (Package Manager)  
+11. Security & RBAC  
+12. Observability: Logging & Monitoring  
+13. CI/CD Integration  
+14. Advanced Topics  
+15. Real World Scenarios / Projects  
 
 ---
 
@@ -157,14 +158,37 @@ kubectl logs <pod-name> -n <namespace>
 |                                                           |
 +-----------------------------------------------------------+
 
-## 8. Job & CronJobs
+## 8. DaemonSet
+
+- **DaemonSet:** Ensures that a copy of a pod runs on all (or some) nodes in the cluster.  
+- Useful for running cluster-wide services such as log collectors, monitoring agents, or network plugins.  
+- When a new node is added, the DaemonSet automatically schedules a pod on it.
+
+### Diagram: DaemonSet Pods running on all nodes
+
+```plaintext
++-----------------------------------------------------------+
+|                      Kubernetes Cluster                   |
+|                                                           |
+|   +------------+    +------------+    +------------+      |
+|   |   Node 1   |    |   Node 2   |    |   Node 3   |      |
+|   | +--------+ |    | +--------+ |    | +--------+ |      |
+|   | | Daemon | |    | | Daemon | |    | | Daemon | |      |
+|   | | Pod    | |    | | Pod    | |    | | Pod    | |      |
+|   | +--------+ |    | +--------+ |    | +--------+ |      |
+|   +------------+    +------------+    +------------+      |
+|                                                           |
++-----------------------------------------------------------+
+
+
+## 9. Job & CronJobs
 
 - **Jobs:** One-time batch tasks.  
 - **CronJobs:** Scheduled tasks similar to cron.
 
 ---
 
-## 9. Helm (Package Manager)
+## 10. Helm (Package Manager)
 
 - What is Helm? Kubernetes package manager.  
 - Helm Charts: Packages of pre-configured Kubernetes resources.  
@@ -173,7 +197,7 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
-## 10. Security & RBAC
+## 11. Security & RBAC
 
 - Role-Based Access Control (RBAC)  
 - Service Accounts  
@@ -182,7 +206,7 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
-## 11. Observability: Logging & Monitoring
+## 12. Observability: Logging & Monitoring
 
 - livenessProbe and readinessProbe for pod health  
 - Logs via `kubectl logs`  
@@ -192,7 +216,7 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
-## 12. CI/CD Integration
+## 13. CI/CD Integration
 
 - GitOps with ArgoCD  
 - Jenkins + Kubernetes pipelines  
@@ -200,7 +224,7 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
-## 13. Advanced Topics
+## 14. Advanced Topics
 
 - Taints and Tolerations  
 - Node Affinity / Anti-affinity  
@@ -211,7 +235,7 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
-## 14. Real World Scenarios / Projects
+## 15. Real World Scenarios / Projects
 
 - Deploying Node.js + MongoDB application  
 - Running WordPress + MySQL  
