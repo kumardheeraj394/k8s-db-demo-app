@@ -1,0 +1,57 @@
+#this will create a container before main app to test mogo reachablity
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejsdbapp
+  labels:
+    app: nodejsdbapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejsdbapp
+  template:
+    metadata:
+      labels:
+        app: nodejsdbapp
+    spec:
+      # 👉 Init container runs before the main app
+      initContainers:
+      - name: wait-for-mongo
+        image: busybox
+        command: ['sh', '-c', 'until nc -z $MONGO_HOST $MONGO_PORT; do echo waiting for MongoDB; sleep 2; done']
+        env:
+        - name: MONGO_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: MONGO_HOST
+        - name: MONGO_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: MONGO_PORT
+
+      containers:
+      - name: nodejsdbapp
+        image: dheeraj394/node-mongo-db:03
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MONGO_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: MONGO_HOST
+        - name: MONGO_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: MONGO_PORT
+        - name: MONGO_DB
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: MONGO_DB
+        - name: PORT
+          value: "3000"
