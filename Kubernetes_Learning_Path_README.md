@@ -15,7 +15,6 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 6. Volumes & Storage  
 7. Stateful Applications
 8. DaemonSet
-9. Multicontainer pod and  initContainer
 9. Multicontainer Pod and InitContainer  
     9.1 Multicontainer  
         9.1.1 Sidecar Pattern  
