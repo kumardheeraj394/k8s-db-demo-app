@@ -16,11 +16,12 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 7. Stateful Applications
 8. DaemonSet
 9. Multicontainer pod and  initContainer
-9.1 Multicontainer
-        9.1.1 Sidecar Pattern
-        9.1.2 Adapter Pattern
-        9.1.3 Ambassador Pattern
-9.2 initContainer
+9. Multicontainer Pod and InitContainer  
+    9.1 Multicontainer  
+        9.1.1 Sidecar Pattern  
+        9.1.2 Adapter Pattern  
+        9.1.3 Ambassador Pattern  
+    9.2 InitContainer 
 10. StaticPod 
 11. Job & CronJobs  
 12. Helm (Package Manager)  
