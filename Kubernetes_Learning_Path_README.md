@@ -269,6 +269,36 @@ Add YAML file (e.g., nginx-static-pod.yaml)
 
 Kubelet starts it automatically
 
+
+## 🔍 Viewing Static Pods Created by Kubelet
+
+Static Pods are created directly by the `kubelet` by reading manifest files from a specified directory, typically `/etc/kubernetes/manifests`. These pods are not created via the Kubernetes API server but **do appear in `kubectl`** results because the `kubelet` registers them.
+
+---
+
+### 📌 How to List Static Pods
+
+Run the following command to see all pods in the `kube-system` namespace (where most static pods reside):
+
+```bash
+kubectl get pods -n kube-system
+
+🖥️ Example Output:
+sql
+Copy
+Edit
+NAME                                       READY   STATUS    RESTARTS      AGE
+calico-kube-controllers-5fc7d6cf67-vvn4t   1/1     Running   2 (14d ago)   16d
+calico-node-l55kh                          1/1     Running   2 (14d ago)   16d
+coredns-57c9b785f6-d7wfh                   1/1     Running   0             13d
+coredns-57c9b785f6-f689p                   1/1     Running   0             13d
+etcd-kubernetes                            1/1     Running   3 (14d ago)   16d
+kube-apiserver-kubernetes                  1/1     Running   3 (14d ago)   16d
+kube-controller-manager-kubernetes         1/1     Running   3 (14d ago)   16d
+kube-proxy-cs8mn                           1/1     Running   2 (14d ago)   16d
+kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)   
+
+
 # 11. Job & CronJobs
 
 - **Job:** One-time batch tasks that run to completion.  
