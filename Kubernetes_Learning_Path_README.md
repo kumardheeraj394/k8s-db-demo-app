@@ -24,11 +24,11 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 10. StaticPod 
 11. Job & CronJobs  
 12. Helm (Package Manager)  
-13. Security & RBAC  
-14. Observability: Logging & Monitoring  
-15. CI/CD Integration  
-16. Advanced Topics  
-17. Real World Scenarios / Projects  
+13. Security & RBAC
+15. Observability: Logging & Monitoring  
+16. CI/CD Integration  
+17. Advanced Topics  
+18. Real World Scenarios / Projects  
 
 ---
 
@@ -321,6 +321,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 - Service Accounts  
 - Network Policies  
 - Pod Security Policies
+
 
 ---
 
