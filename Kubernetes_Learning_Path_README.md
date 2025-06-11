@@ -256,6 +256,66 @@ An **initContainer** is a special type of container in a Kubernetes Pod that run
 **Static Pods** are managed directly by the `kubelet` on a node and are not visible through the Kubernetes API server.  
 They are typically used for system-level components and run independently of the Kub
 
+Creating a static pod in Kubernetes means manually defining a Pod that is managed directly by the kubelet on a node, bypassing the Kubernetes API server. This is useful for critical system pods or single-node clusters.
+
+Here’s how to create a static pod:
+
+🔧 Step-by-Step: Creating a Static Pod
+10.1. Connect to the Node
+SSH into the Kubernetes node where you want to run the static pod.
+
+bash
+Copy
+Edit
+ssh user@your-node-ip
+10.2. Find or Create the Static Pod Path
+Kubelet watches a specific directory for static pod manifests. This path is usually defined in the kubelet config file or as a flag.
+
+Default location (usually): /etc/kubernetes/manifests
+
+To verify the location, check kubelet flags:
+
+bash
+Copy
+Edit
+ps -ef | grep kubelet
+Look for --pod-manifest-path=/etc/kubernetes/manifests
+
+10.3. Create the Pod Manifest File
+Create a YAML file in that directory, e.g.:
+
+bash
+Copy
+Edit
+sudo nano /etc/kubernetes/manifests/nginx-static-pod.yaml
+Example content:
+
+yaml
+Copy
+Edit
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-static
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+Once this file is saved, the kubelet will automatically detect and start the pod.
+
+10.4. Verify the Static Pod is Running
+bash
+Copy
+Edit
+kubectl get pods -A
+You should see your static pod listed under the node’s namespace (typically kube-system if you're on a control plane node).
+
+You can also check locally:
+
 # 11. Job & CronJobs
 
 - **Job:** One-time batch tasks that run to completion.  
