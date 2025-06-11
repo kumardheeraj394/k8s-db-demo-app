@@ -286,10 +286,7 @@ kubectl get pods -n kube-system
 
 🖥️ Example Output:
 ---
-sql
-Copy
-Edit
-NAME                                       READY   STATUS    RESTARTS      AGE
+                                 READY   STATUS    RESTARTS      AGE
 calico-kube-controllers-5fc7d6cf67-vvn4t   1/1     Running   2 (14d ago)   16d
 calico-node-l55kh                          1/1     Running   2 (14d ago)   16d
 coredns-57c9b785f6-d7wfh                   1/1     Running   0             13d
@@ -301,20 +298,15 @@ kube-proxy-cs8mn                           1/1     Running   2 (14d ago)   16d
 kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)   
 
 
-# 11. Job & CronJobs
 
-- **Job:** One-time batch tasks that run to completion.  
-- **CronJobs:** Scheduled tasks that run periodically similar to cron jobs.
-
-
-## 12. Job & CronJobs
+## 11. Job & CronJobs
 
 - **Jobs:** One-time batch tasks.  
 - **CronJobs:** Scheduled tasks similar to cron.
 
 ---
 
-## 13. Helm (Package Manager)
+## 12. Helm (Package Manager)
 
 - What is Helm? Kubernetes package manager.  
 - Helm Charts: Packages of pre-configured Kubernetes resources.  
@@ -323,7 +315,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 14. Security & RBAC
+## 13. Security & RBAC
 
 - Role-Based Access Control (RBAC)  
 - Service Accounts  
@@ -332,7 +324,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 15. Observability: Logging & Monitoring
+## 14. Observability: Logging & Monitoring
 
 - livenessProbe and readinessProbe for pod health  
 - Logs via `kubectl logs`  
@@ -342,7 +334,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 16. CI/CD Integration
+## 15. CI/CD Integration
 
 - GitOps with ArgoCD  
 - Jenkins + Kubernetes pipelines  
@@ -350,7 +342,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 17. Advanced Topics
+## 16. Advanced Topics
 
 - Taints and Tolerations  
 - Node Affinity / Anti-affinity  
@@ -361,7 +353,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 18. Real World Scenarios / Projects
+## 17. Real World Scenarios / Projects
 
 - Deploying Node.js + MongoDB application  
 - Running WordPress + MySQL  
