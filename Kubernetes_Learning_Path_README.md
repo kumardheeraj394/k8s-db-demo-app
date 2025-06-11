@@ -283,7 +283,9 @@ Run the following command to see all pods in the `kube-system` namespace (where 
 ```bash
 kubectl get pods -n kube-system
 
+
 🖥️ Example Output:
+---
 sql
 Copy
 Edit
