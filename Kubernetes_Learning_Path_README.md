@@ -250,7 +250,7 @@ An **initContainer** is a special type of container in a Kubernetes Pod that run
 3. **Copying configuration** or **secrets** from a secure location
 4. **Setting permissions** on shared volumes before the main app starts
 
-
+---
 
 # 10. Static Pod
 
@@ -298,7 +298,7 @@ kube-controller-manager-kubernetes         1/1     Running   3 (14d ago)   16d
 kube-proxy-cs8mn                           1/1     Running   2 (14d ago)   16d
 kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)   
 
-
+---
 
 ## 11. Job & CronJobs
 
@@ -322,7 +322,6 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 - Service Accounts  
 - Network Policies  
 - Pod Security Policies
-
 
 ---
 
