@@ -25,6 +25,7 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 11. Job & CronJobs  
 12. Helm (Package Manager)  
 13. Security & RBAC
+14. Kubernetes Affinity Cheat Sheet (YAML Example)
 15. Observability: Logging & Monitoring  
 16. CI/CD Integration  
 17. Advanced Topics  
@@ -325,7 +326,79 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 14. Observability: Logging & Monitoring
+## 14.  Kubernetes Affinity Cheat Sheet (YAML Example)
+
+This YAML example demonstrates how to use:
+
+- ✅ Node Affinity
+- 🤝 Pod Affinity
+- ❌ Pod Anti-Affinity
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: affinity-demo-pod
+  labels:
+    app: demo-app
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  affinity:
+
+    # -------------------
+    # 1. Node Affinity
+    # -------------------
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: disktype
+            operator: In
+            values:
+            - ssd
+
+    # -------------------
+    # 2. Pod Affinity
+    # -------------------
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - frontend
+        topologyKey: "kubernetes.io/hostname"
+
+    # ------------------------
+    # 3. Pod Anti-Affinity
+    # ------------------------
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - redis
+        topologyKey: "kubernetes.io/hostname"
+```
+
+---
+
+## 📝 Description
+
+| Affinity Type     | Rule                                                                 |
+|--------------------|----------------------------------------------------------------------|
+| Node Affinity      | Only schedule pod on nodes with `disktype=ssd`                      |
+| Pod Affinity       | Schedule pod on same node as another pod with label `app=frontend` |
+| Pod Anti-Affinity  | Avoid nodes that already have pods with label `app=redis`          |
+
+
+
+## 15. Observability: Logging & Monitoring
 
 - livenessProbe and readinessProbe for pod health  
 - Logs via `kubectl logs`  
@@ -335,7 +408,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 15. CI/CD Integration
+## 16. CI/CD Integration
 
 - GitOps with ArgoCD  
 - Jenkins + Kubernetes pipelines  
@@ -343,7 +416,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 16. Advanced Topics
+## 17. Advanced Topics
 
 - Taints and Tolerations  
 - Node Affinity / Anti-affinity  
@@ -354,7 +427,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 17. Real World Scenarios / Projects
+## 18. Real World Scenarios / Projects
 
 - Deploying Node.js + MongoDB application  
 - Running WordPress + MySQL  
