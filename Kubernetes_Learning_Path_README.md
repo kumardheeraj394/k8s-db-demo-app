@@ -327,13 +327,32 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-## 14.  Kubernetes Affinity Cheat Sheet (YAML Example)
+## 14. Kubernetes Affinity Cheat Sheet (YAML Example)
 
 This YAML example demonstrates how to use:
 
-- ✅ Node Affinity
-- 🤝 Pod Affinity
-- ❌ Pod Anti-Affinity
+- ✅ **Node Affinity**  
+  **Purpose:** Schedule Pods on specific nodes based on node labels.  
+  **How it works:**  
+  You define rules like:  
+  “Place this Pod only on nodes that have a certain label (e.g., `disktype=ssd`).”  
+  **Example use case:** Run database Pods only on nodes with SSDs for better performance.
+
+- 🤝 **Pod Affinity**  
+  **Purpose:** Schedule Pods close to other Pods with specific labels.  
+  **How it works:**  
+  You define rules like:  
+  “Place this Pod on the same node (or nearby) as another Pod with label `app=frontend`.”  
+  **Example use case:** Run an application and its caching service on the same node to reduce latency.
+
+- ❌ **Pod Anti-Affinity**  
+  **Purpose:** Avoid placing Pods together on the same node.  
+  **How it works:**  
+  You define rules like:  
+  “Do not place this Pod on a node where a Pod with label `app=redis` is already running.”  
+  **Example use case:** Ensure high availability by spreading replicas across different nodes.
+
+---
 
 ```yaml
 apiVersion: v1
@@ -385,17 +404,12 @@ spec:
             values:
             - redis
         topologyKey: "kubernetes.io/hostname"
-```
 
----
-
-## 📝 Description
-
-| Affinity Type     | Rule                                                                 |
-|--------------------|----------------------------------------------------------------------|
-| Node Affinity      | Only schedule pod on nodes with `disktype=ssd`                      |
-| Pod Affinity       | Schedule pod on same node as another pod with label `app=frontend` |
-| Pod Anti-Affinity  | Avoid nodes that already have pods with label `app=redis`          |
+| Affinity Type     | Rule                                                               |
+| ----------------- | ------------------------------------------------------------------ |
+| Node Affinity     | Only schedule pod on nodes with `disktype=ssd`                     |
+| Pod Affinity      | Schedule pod on same node as another pod with label `app=frontend` |
+| Pod Anti-Affinity | Avoid nodes that already have pods with label `app=redis`          |
 
 
 
