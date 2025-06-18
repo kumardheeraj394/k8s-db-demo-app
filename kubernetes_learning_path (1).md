@@ -181,9 +181,6 @@ Accessing GPU devices or system-level info
 
 Example
 
-yaml
-Copy
-Edit
 apiVersion: v1
 kind: Pod
 metadata:
