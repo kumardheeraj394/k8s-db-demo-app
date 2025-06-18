@@ -285,8 +285,6 @@ Cloud-native environments where manual PVs are inefficient
 
 PVC Example (uses dynamic provisioning):
 
-```yaml
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
