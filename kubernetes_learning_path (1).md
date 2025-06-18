@@ -282,9 +282,9 @@ Use Case:
 On-demand storage creation
 
 Cloud-native environments where manual PVs are inefficient
-
+---
 PVC Example (uses dynamic provisioning):
-
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
