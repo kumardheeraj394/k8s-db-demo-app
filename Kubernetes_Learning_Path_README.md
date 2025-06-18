@@ -433,15 +433,174 @@ spec:
 
 ## 17. Advanced Topics
 
-- Taints and Tolerations  
-- Node Affinity / Anti-affinity  
-- Horizontal Pod Autoscaler (HPA)  
-- Vertical Pod Autoscaler  
-- Custom Resource Definitions (CRDs)  
-- Operators
-
 ---
 
+### 🚫 Taints and ✅ Tolerations
+
+**Taints:** Prevent pods from being scheduled on specific nodes.  
+**Tolerations:** Allow exceptions to taints.
+
+**Example - Taint a node:**
+```bash
+kubectl taint nodes node1 key=env:NoSchedule
+Pod YAML with Toleration:
+
+yaml
+Copy
+Edit
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toleration-example
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "production"
+    effect: "NoSchedule"
+📈 Horizontal Pod Autoscaler (HPA)
+Scales the number of pod replicas based on resource usage (e.g., CPU).
+
+Create a Deployment:
+
+yaml
+Copy
+Edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "200m"
+Create HPA:
+
+yaml
+Copy
+Edit
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deployment
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+📊 Vertical Pod Autoscaler (VPA)
+Auto-adjusts CPU/memory requests and limits of a pod.
+
+VPA YAML:
+
+yaml
+Copy
+Edit
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: nginx-vpa
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: nginx-deployment
+  updatePolicy:
+    updateMode: "Auto"
+🧱 Custom Resource Definitions (CRDs)
+Create a new Kubernetes resource type.
+
+CRD YAML (MySQLCluster):
+
+yaml
+Copy
+Edit
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: mysqlclusters.myorg.com
+spec:
+  group: myorg.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                size:
+                  type: integer
+  scope: Namespaced
+  names:
+    plural: mysqlclusters
+    singular: mysqlcluster
+    kind: MySQLCluster
+Sample Custom Resource:
+
+yaml
+Copy
+Edit
+apiVersion: myorg.com/v1
+kind: MySQLCluster
+metadata:
+  name: sample-db
+spec:
+  size: 3
+🤖 Operators
+An Operator watches for CRDs and performs operations on them.
+
+Operator behavior is implemented as code (usually in Go or Python).
+
+MySQLCluster Custom Resource:
+
+yaml
+Copy
+Edit
+apiVersion: myorg.com/v1
+kind: MySQLCluster
+metadata:
+  name: demo-db
+spec:
+  size: 2
+What the Operator does:
+
+✅ On creation: Deploys a StatefulSet of 2 MySQL instances.
+
+🔄 On spec.size change: Scales StatefulSet up/down.
+
+🧹 On deletion: Cleans up resources.
+
+The Operator is deployed as a Deployment in the cluster, continuously watching the CRD.
 ## 18. Real World Scenarios / Projects
 
 - Deploying Node.js + MongoDB application  
