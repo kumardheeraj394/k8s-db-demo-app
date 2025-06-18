@@ -136,7 +136,7 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
-## 6. ResourceQuota
+## 7. ResourceQuota
 
 ✅ What is a ResourceQuota?
 A ResourceQuota is a Kubernetes object used to limit the amount of resources (like CPU, memory, storage, pods, etc.) that can be consumed in a namespace.
@@ -155,6 +155,27 @@ Number of services, PVCs, secrets, configmaps
 Storage per PVC
 
 Custom resource usage (like GPUs)
+
+🔧 Example YAML – Limit CPU, Memory, and Pod Count
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-quota
+  namespace: dev
+spec:
+  hard:
+    pods: "10"
+    requests.cpu: "4"
+    requests.memory: "8Gi"
+    limits.cpu: "8"
+    limits.memory: "16Gi"
+
+🔍 Explanation:
+
+Field	Meaning
+pods: "10"	Max 10 pods allowed in the namespace
+requests.cpu	Total CPU requested across all pods must not exceed 4 CPUs
+limits.memory	Combined memory limits of all pods must not exceed 16 GiB
 
 ---
 
@@ -189,6 +210,7 @@ When a new node is added, the DaemonSet automatically schedules a pod on it.
 |   +------------+    +------------+    +------------+      |
 |                                                           |
 +-----------------------------------------------------------+
+---
 
 # 9. Multicontainer Pod and InitContainer in Kubernetes
 
