@@ -165,6 +165,8 @@ spec:
     emptyDir: {}
 
 
+---
+
 ## 🖥️ hostPath
 
 **Definition**  
@@ -196,7 +198,6 @@ spec:
     hostPath:
       path: /var/log
       type: Directory
-
 
 
 📦 Persistent Volume (PV)
