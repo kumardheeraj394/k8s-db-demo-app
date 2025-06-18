@@ -163,8 +163,6 @@ spec:
   volumes:
   - name: temp-storage
     emptyDir: {}
-
-
 ---
 
 ## 🖥️ hostPath
@@ -179,6 +177,7 @@ Mounts a file or directory from the host node’s filesystem into a Pod.
 - Accessing GPU devices or system-level info
 
 **Example**
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -198,7 +197,6 @@ spec:
     hostPath:
       path: /var/log
       type: Directory
-
 
 📦 Persistent Volume (PV)
 Definition:
