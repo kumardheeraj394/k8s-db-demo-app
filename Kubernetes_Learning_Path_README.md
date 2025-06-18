@@ -300,7 +300,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-# 10. job cronjob
+# 11. job cronjob
 
 
 - **Jobs:** One-time batch tasks.  
@@ -308,7 +308,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-# 10. helm
+# 12. helm
 
 - What is Helm? Kubernetes package manager.  
 - Helm Charts: Packages of pre-configured Kubernetes resources.  
