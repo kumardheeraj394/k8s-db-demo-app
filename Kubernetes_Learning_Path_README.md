@@ -179,7 +179,7 @@ limits.memory	Combined memory limits of all pods must not exceed 16 GiB
 
 ---
 
-## 7. Stateful Applications
+## 8. Stateful Applications
 
 - **StatefulSets:** Manage stateful applications with stable network IDs and persistent storage.  
 - Use with PVCs and Headless Services for stable identity and storage.  
@@ -187,7 +187,7 @@ limits.memory	Combined memory limits of all pods must not exceed 16 GiB
 
 ---
 
-# 8. DaemonSet
+# 9. DaemonSet
 
 A **DaemonSet** ensures that a copy of a pod runs on all (or some) nodes in the cluster.
 
@@ -212,9 +212,9 @@ When a new node is added, the DaemonSet automatically schedules a pod on it.
 +-----------------------------------------------------------+
 ---
 
-# 9. Multicontainer Pod and InitContainer in Kubernetes
+# 10. Multicontainer Pod and InitContainer in Kubernetes
 
-## 9.1 Multicontainer
+## 10.1 Multicontainer
 
 A Kubernetes Pod can run multiple containers that work together. This is commonly used in design patterns like:
 
@@ -224,7 +224,7 @@ A Kubernetes Pod can run multiple containers that work together. This is commonl
 
 ---
 
-### 9.1.1 🔹 Sidecar Pattern
+### 10.1.1 🔹 Sidecar Pattern
 
 The **Sidecar pattern** involves deploying a helper container alongside the main application container within the same Pod. This auxiliary container extends or enhances the functionality of the primary application without modifying its code.
 
@@ -239,7 +239,7 @@ A sidecar container could collect logs from the main application and forward the
 
 ---
 
-### 9.1.2 🔹 Adapter Pattern
+### 10.1.2 🔹 Adapter Pattern
 
 The **Adapter pattern** is used to bridge incompatible interfaces between the main application and other services or components. By introducing an adapter container, you can transform data formats, protocols, or APIs to match the expectations of different systems.
 
@@ -254,7 +254,7 @@ An adapter container modifies the output of an application to match the input re
 
 ---
 
-### 9.1.3 🔹 Ambassador Pattern
+### 10.1.3 🔹 Ambassador Pattern
 
 The **Ambassador pattern** introduces a proxy container that manages all network interactions between the main application container and external services. This abstracts communication complexity.
 
@@ -269,7 +269,7 @@ An ambassador container using Nginx proxies HTTPS requests to the main applicati
 
 ---
 
-## 9.2 InitContainer
+## 10.2 InitContainer
 
 [🎥 Video Explanation](https://www.youtube.com/watch?v=9NTr6EFmxkI)
 
@@ -297,7 +297,7 @@ An **initContainer** is a special type of container in a Kubernetes Pod that run
 
 ---
 
-# 10. Static Pod
+# 11. Static Pod
 
 **Static Pods** are managed directly by the `kubelet` on a node and are not visible through the Kubernetes API server.  
 They are typically used for system-level components and run independently of the Kub
@@ -345,58 +345,52 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
-# 11. job and Cronjob
-
+## ✳️ **12. Job and CronJob**
 
 - **Jobs:** One-time batch tasks.  
 - **CronJobs:** Scheduled tasks similar to cron.
 
 ---
 
-# 12. Helm
+## 📦 **13. Helm**
 
-
-- What is Helm? Kubernetes package manager.  
-- Helm Charts: Packages of pre-configured Kubernetes resources.  
+- **What is Helm?** Kubernetes package manager.  
+- **Helm Charts:** Packages of pre-configured Kubernetes resources.  
 - Installing and managing applications with Helm.  
 - Helm Repositories for sharing charts.
 
 ---
-## 13. Security & RBAC
 
-- Role-Based Access Control (RBAC)  
-- Service Accounts  
-- Network Policies  
-- Pod Security Policies
+## 🔐 **14. Security & RBAC**
+
+- **Role-Based Access Control (RBAC)**  
+- **Service Accounts**  
+- **Network Policies**  
+- **Pod Security Policies**
 
 ---
 
-## 14. Kubernetes Affinity Cheat Sheet (YAML Example)
+## 🧲 **15. Kubernetes Affinity Cheat Sheet (YAML Example)**
 
 This YAML example demonstrates how to use:
 
 - ✅ **Node Affinity**  
   **Purpose:** Schedule Pods on specific nodes based on node labels.  
   **How it works:**  
-  You define rules like:  
   “Place this Pod only on nodes that have a certain label (e.g., `disktype=ssd`).”  
-  **Example use case:** Run database Pods only on nodes with SSDs for better performance.
+  **Use case:** Run database Pods only on nodes with SSDs.
 
 - 🤝 **Pod Affinity**  
-  **Purpose:** Schedule Pods close to other Pods with specific labels.  
+  **Purpose:** Schedule Pods near others with specific labels.  
   **How it works:**  
-  You define rules like:  
   “Place this Pod on the same node (or nearby) as another Pod with label `app=frontend`.”  
-  **Example use case:** Run an application and its caching service on the same node to reduce latency.
+  **Use case:** Co-locate an app with its caching service.
 
 - ❌ **Pod Anti-Affinity**  
-  **Purpose:** Avoid placing Pods together on the same node.  
+  **Purpose:** Avoid placing Pods together.  
   **How it works:**  
-  You define rules like:  
-  “Do not place this Pod on a node where a Pod with label `app=redis` is already running.”  
-  **Example use case:** Ensure high availability by spreading replicas across different nodes.
-
----
+  “Do not place this Pod where another with label `app=redis` is already running.”  
+  **Use case:** Spread replicas across nodes for HA.
 
 ```yaml
 apiVersion: v1
@@ -411,9 +405,6 @@ spec:
     image: nginx
   affinity:
 
-    # -------------------
-    # 1. Node Affinity
-    # -------------------
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
@@ -423,9 +414,6 @@ spec:
             values:
             - ssd
 
-    # -------------------
-    # 2. Pod Affinity
-    # -------------------
     podAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
@@ -436,9 +424,6 @@ spec:
             - frontend
         topologyKey: "kubernetes.io/hostname"
 
-    # ------------------------
-    # 3. Pod Anti-Affinity
-    # ------------------------
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
@@ -449,15 +434,9 @@ spec:
             - redis
         topologyKey: "kubernetes.io/hostname"
 
-| Affinity Type     | Rule                                                               |
-| ----------------- | ------------------------------------------------------------------ |
-| Node Affinity     | Only schedule pod on nodes with `disktype=ssd`                     |
-| Pod Affinity      | Schedule pod on same node as another pod with label `app=frontend` |
-| Pod Anti-Affinity | Avoid nodes that already have pods with label `app=redis`          |
-
 ---
 
-## 15. Observability: Logging & Monitoring
+## 16. Observability: Logging & Monitoring
 
 - livenessProbe and readinessProbe for pod health  
 - Logs via `kubectl logs`  
@@ -467,7 +446,7 @@ spec:
 
 ---
 
-## 16. CI/CD Integration
+## 17. CI/CD Integration
 
 - GitOps with ArgoCD  
 - Jenkins + Kubernetes pipelines  
@@ -475,7 +454,7 @@ spec:
 
 ---
 
-## 17. Advanced Topics
+## 18. Advanced Topics
 
 ---
 
@@ -645,8 +624,9 @@ What the Operator does:
 🧹 On deletion: Cleans up resources.
 
 The Operator is deployed as a Deployment in the cluster, continuously watching the CRD.
-## 18. Real World Scenarios / Projects
 
+## 19. Real World Scenarios / Projects
+---
 - Deploying Node.js + MongoDB application  
 - Running WordPress + MySQL  
 - Creating scalable REST APIs  
