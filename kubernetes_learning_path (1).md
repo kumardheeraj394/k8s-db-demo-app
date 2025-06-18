@@ -163,7 +163,7 @@ spec:
   volumes:
   - name: temp-storage
     emptyDir: {}
-
+---
 
 🖥️ HostPath
 Definition:
@@ -201,7 +201,7 @@ spec:
     hostPath:
       path: /var/log
       type: Directory
-
+---
 
 📦 Persistent Volume (PV)
 Definition:
@@ -228,7 +228,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   hostPath:
     path: /mnt/data
-
+---
 
 📄 Persistent Volume Claim (PVC)
 Definition:
@@ -253,7 +253,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
-
+---
 🏷️ StorageClass
 Definition:
 Defines a class of storage (e.g., fast, slow, SSD, NFS), and provisions volumes using a specific plugin or provisioner.
@@ -274,7 +274,7 @@ provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp2
 
-
+---
 ⚙️ Dynamic Provisioning
 Definition:
 When a PVC requests storage and no PV matches, a new PV is automatically created via a StorageClass.
