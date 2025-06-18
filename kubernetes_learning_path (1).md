@@ -182,10 +182,7 @@ Accessing host logs
 Accessing GPU devices or system-level info
 
 Example:
-
-yaml
-Copy
-Edit
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -217,10 +214,8 @@ Pre-created storage by admins
 Backed by NFS, cloud block storage, etc.
 
 Example:
+```yaml
 
-yaml
-Copy
-Edit
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -246,10 +241,8 @@ Abstracts the actual storage backend
 Developers request storage without knowing underlying details
 
 Example:
+```yaml
 
-yaml
-Copy
-Edit
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -272,10 +265,7 @@ Create different storage “tiers” (e.g., SSD vs HDD)
 Automate dynamic provisioning
 
 Example:
-
-yaml
-Copy
-Edit
+```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -297,9 +287,8 @@ Cloud-native environments where manual PVs are inefficient
 
 PVC Example (uses dynamic provisioning):
 
-yaml
-Copy
-Edit
+```yaml
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -311,6 +300,8 @@ spec:
     requests:
       storage: 2Gi
   storageClassName: fast-storage
+
+```
 🔁 Summary Comparison Table
 Type	Volatile	Node-Specific	Shared Across Pods	Backed By Host/Cloud	Auto-Provisioned
 emptyDir	✅ Yes	✅ Yes	🚫 No	❌ No	❌ No
