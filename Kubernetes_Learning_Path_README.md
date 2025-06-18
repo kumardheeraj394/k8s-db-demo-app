@@ -362,7 +362,6 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 - Helm Repositories for sharing charts.
 
 ---
-
 ## 13. Security & RBAC
 
 - Role-Based Access Control (RBAC)  
@@ -456,7 +455,7 @@ spec:
 | Pod Affinity      | Schedule pod on same node as another pod with label `app=frontend` |
 | Pod Anti-Affinity | Avoid nodes that already have pods with label `app=redis`          |
 
-
+---
 
 ## 15. Observability: Logging & Monitoring
 
