@@ -165,20 +165,19 @@ spec:
     emptyDir: {}
 
 
-🖥️ hostPath
-Definition
+## 🖥️ hostPath
+
+**Definition**  
 Mounts a file or directory from the host node’s filesystem into a Pod.
 
-⚠️ Use with caution: Can compromise node security if misused. Useful for node-level agents or diagnostic tools.
+> ⚠️ **Use with caution**: Can compromise node security if misused. Useful for node-level agents or diagnostic tools.
 
-Use Cases
+**Use Cases**  
+- Accessing host logs  
+- Accessing GPU devices or system-level info
 
-Accessing host logs
-
-Accessing GPU devices or system-level info
-
-Example
-
+**Example**
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -197,6 +196,7 @@ spec:
     hostPath:
       path: /var/log
       type: Directory
+
 
 
 📦 Persistent Volume (PV)
