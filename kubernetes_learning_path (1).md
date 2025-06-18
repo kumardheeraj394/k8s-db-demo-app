@@ -137,16 +137,16 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
-### 📁 EmptyDir
+## 📁 emptyDir
 
-**Definition:**  
-A temporary volume that is created when a pod starts and **deleted when the pod stops**.
+**Definition**  
+A temporary volume that is created when a Pod starts and deleted when the Pod stops.
 
-**Use Case:**  
-- Sharing files between containers in the same pod  
+**Use Cases**  
+- Sharing files between containers in the same Pod  
 - Temporary scratch space (e.g., cache)
 
-**Example:**
+**Example**
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -164,8 +164,6 @@ spec:
   - name: temp-storage
     emptyDir: {}
 
-****
-```yaml
 
 🖥️ hostPath
 Definition
