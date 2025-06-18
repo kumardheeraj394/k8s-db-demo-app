@@ -163,7 +163,9 @@ spec:
   volumes:
   - name: temp-storage
     emptyDir: {}
----
+
+****
+```yaml
 
 🖥️ HostPath
 Definition:
