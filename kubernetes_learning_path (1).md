@@ -301,12 +301,14 @@ spec:
 
 ```
 🔁 Summary Comparison Table
-Type	Volatile	Node-Specific	Shared Across Pods	Backed By Host/Cloud	Auto-Provisioned
-emptyDir	✅ Yes	✅ Yes	🚫 No	❌ No	❌ No
-hostPath	❌ No	✅ Yes	🚫 No	✅ Yes (host)	❌ No
-PersistentVolume	❌ No	❌ No	✅ Yes	✅ Yes	❌ Optional
-PVC	❌ No	❌ No	✅ Yes	✅ Yes	✅ If SC present
-StorageClass	❌ N/A	❌ N/A	❌ N/A	✅ Yes	✅ Yes
+| Type                    | Volatile | Node-Specific | Shared Across Pods | Backed By Host/Cloud | Auto-Provisioned |
+| ----------------------- | -------- | ------------- | ------------------ | -------------------- | ---------------- |
+| `emptyDir`              | ✅ Yes    | ✅ Yes         | 🚫 No              | ❌ No                 | ❌ No             |
+| `hostPath`              | ❌ No     | ✅ Yes         | 🚫 No              | ✅ Yes (host)         | ❌ No             |
+| `PersistentVolume`      | ❌ No     | ❌ No          | ✅ Yes              | ✅ Yes                | ❌ Optional       |
+| `PersistentVolumeClaim` | ❌ No     | ❌ No          | ✅ Yes              | ✅ Yes                | ✅ If SC present  |
+| `StorageClass`          | ❌ N/A    | ❌ N/A         | ❌ N/A              | ✅ Yes                | ✅ Yes            |
+
 ---
 
 ## 7. ResourceQuota
