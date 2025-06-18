@@ -12,24 +12,25 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 3. Pods, ReplicaSets, Deployments  
 4. Services & Networking  
 5. Config & Secrets Management  
-6. Volumes & Storage  
-7. Stateful Applications
-8. DaemonSet
-9. Multicontainer Pod and InitContainer  
+6. Volumes & Storage
+7. ResourceQuota
+8. Stateful Applications
+9. DaemonSet
+10. Multicontainer Pod and InitContainer  
     9.1 Multicontainer  
         9.1.1 Sidecar Pattern  
         9.1.2 Adapter Pattern  
         9.1.3 Ambassador Pattern  
     9.2 InitContainer 
-10. StaticPod 
-11. Job & CronJobs  
-12. Helm (Package Manager)  
-13. Security & RBAC
-14. Kubernetes Affinity Cheat Sheet (YAML Example)
-15. Observability: Logging & Monitoring  
-16. CI/CD Integration  
-17. Advanced Topics  
-18. Real World Scenarios / Projects  
+11. StaticPod 
+12. Job & CronJobs  
+13. Helm (Package Manager)  
+14. Security & RBAC
+15. Kubernetes Affinity Cheat Sheet (YAML Example)
+16. Observability: Logging & Monitoring  
+17. CI/CD Integration  
+18. Advanced Topics  
+19. Real World Scenarios / Projects  
 
 ---
 
@@ -132,6 +133,28 @@ kubectl logs <pod-name> -n <namespace>
 - **Persistent Volume Claims (PVC):** User requests for storage.  
 - **StorageClasses:** Define different storage types and provisioners.  
 - **Dynamic Provisioning:** Auto-creates PVs when PVCs are made.
+
+---
+
+## 6. ResourceQuota
+
+✅ What is a ResourceQuota?
+A ResourceQuota is a Kubernetes object used to limit the amount of resources (like CPU, memory, storage, pods, etc.) that can be consumed in a namespace.
+
+This is useful in multi-tenant environments to prevent any one team or application from using all cluster resources.
+
+📌 What Can You Limit?
+You can restrict:
+
+Total number of pods
+
+Total CPU or memory usage
+
+Number of services, PVCs, secrets, configmaps
+
+Storage per PVC
+
+Custom resource usage (like GPUs)
 
 ---
 
