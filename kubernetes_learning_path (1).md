@@ -889,7 +889,10 @@ What the Operator does:
 The Operator is deployed as a Deployment in the cluster, continuously watching the CRD.
 ---
 
-```  
+```
+---
+
+``` 
 
 ## 19. Real World Scenarios / Projects
 
