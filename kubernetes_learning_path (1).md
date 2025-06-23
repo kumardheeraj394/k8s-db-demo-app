@@ -576,6 +576,9 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 ---
 
 ```
+---
+
+```
 
 ## 🔐 **14. Security & RBAC**
 
@@ -585,6 +588,11 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 - **Pod Security Policies**
 
 ---
+
+```
+---
+
+```
 
 ## 🧲 **15. Kubernetes Affinity Cheat Sheet (YAML Example)**
 
@@ -653,6 +661,9 @@ spec:
 ---
 
 ```
+---
+
+```
 
 ## 16. Observability: Logging & Monitoring
 
@@ -665,6 +676,9 @@ spec:
 ---
 
 ```
+---
+
+```
 
 ## 17. CI/CD Integration
 
@@ -672,6 +686,9 @@ spec:
 - Jenkins + Kubernetes pipelines  
 - GitHub Actions integration with Kubernetes
 
+---
+
+```
 ---
 
 ```
@@ -866,6 +883,9 @@ What the Operator does:
 🧹 On deletion: Cleans up resources.
 
 The Operator is deployed as a Deployment in the cluster, continuously watching the CRD.
+---
+
+```
 ---
 
 ```
