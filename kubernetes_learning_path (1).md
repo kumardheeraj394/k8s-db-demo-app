@@ -315,13 +315,10 @@ parameters:
 ---
 
 ```
-
-# 7. ResourceQuota
-
 ---
 
 ```
-
+# 7. ResourceQuota
 ### 📘 Definition  
 A **ResourceQuota** is a Kubernetes object used to **limit the amount of resources** (like CPU, memory, storage, pods, etc.) that can be consumed **within a specific namespace**.
 
@@ -368,6 +365,9 @@ pods: "10"	Max 10 pods allowed in the namespace
 requests.cpu	Total CPU requested across all pods must not exceed 4 CPUs
 limits.memory	Combined memory limits of all pods must not exceed 16 GiB
 
+---
+
+```
 ---
 
 ```
