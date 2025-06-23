@@ -318,6 +318,10 @@ parameters:
 
 # 7. ResourceQuota
 
+---
+
+```
+
 ### 📘 Definition  
 A **ResourceQuota** is a Kubernetes object used to **limit the amount of resources** (like CPU, memory, storage, pods, etc.) that can be consumed **within a specific namespace**.
 
@@ -334,6 +338,8 @@ You can restrict the following:
 - ✅ Usage of **Custom Resources** (e.g., GPUs)
 
 ---
+
+```
 
 ## 🧾 Sample ResourceQuota YAML
 
