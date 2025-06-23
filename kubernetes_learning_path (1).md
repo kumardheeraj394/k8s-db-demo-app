@@ -318,44 +318,43 @@ parameters:
 
 # 7. ResourceQuota
 
+### 📘 Definition  
+A **ResourceQuota** is a Kubernetes object used to **limit the amount of resources** (like CPU, memory, storage, pods, etc.) that can be consumed **within a specific namespace**.
 
-✅ What is a ResourceQuota?
-A ResourceQuota is a Kubernetes object used to limit the amount of resources (like CPU, memory, storage, pods, etc.) that can be consumed in a namespace.
+> This is especially useful in **multi-tenant environments** to ensure fair resource distribution and prevent any single user or team from monopolizing cluster resources.
+---
+## 📌 What Can You Limit?
 
-This is useful in multi-tenant environments to prevent any one team or application from using all cluster resources.
+You can restrict the following:
 
-📌 What Can You Limit?
-You can restrict:
-
-Total number of pods
-
-Total CPU or memory usage
-
-Number of services, PVCs, secrets, configmaps
-
-Storage per PVC
-
-Custom resource usage (like GPUs)
-
+- ✅ Total number of **Pods**
+- ✅ Total **CPU** or **Memory** usage
+- ✅ Number of **Services**, **PVCs**, **Secrets**, **ConfigMaps**
+- ✅ **Storage size** per PVC
+- ✅ Usage of **Custom Resources** (e.g., GPUs)
 
 ---
 
-### 📄 🔧 Example YAML – Limit CPU, Memory, and Pod Count
+## 🧾 Sample ResourceQuota YAML
 
 ```yaml
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: dev-quota
-  namespace: dev
+  name: team-a-quota
+  namespace: team-a
 spec:
   hard:
     pods: "10"
     requests.cpu: "4"
-    requests.memory: "8Gi"
+    requests.memory: 8Gi
     limits.cpu: "8"
-    limits.memory: "16Gi"
+    limits.memory: 16Gi
+    persistentvolumeclaims: "5"
+    requests.storage: 100Gi
+---
 
+```
 🔍 Explanation:
 
 Field	Meaning
