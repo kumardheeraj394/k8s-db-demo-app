@@ -314,7 +314,6 @@ parameters:
 
 ---
 
-```
 ---
 
 ```
@@ -378,6 +377,9 @@ limits.memory	Combined memory limits of all pods must not exceed 16 GiB
 - Use with PVCs and Headless Services for stable identity and storage.  
 - Common for databases like MongoDB, MySQL clusters.
 
+---
+
+```
 ---
 
 ```
