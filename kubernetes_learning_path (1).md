@@ -397,16 +397,15 @@ When a new node is added, the DaemonSet automatically schedules a pod on it.
 
 
 +-----------------------------------------------------------+
-|                      Kubernetes Cluster                   |
-|                                                           |
-|   +------------+    +------------+    +------------+      |
-|   |   Node 1   |    |   Node 2   |    |   Node 3   |      |
-|   | +--------+ |    | +--------+ |    | +--------+ |      |
-|   | | Daemon | |    | | Daemon | |    | | Daemon | |      |
-|   | | Pod    | |    | | Pod    | |    | | Pod    | |      |
-|   | +--------+ |    | +--------+ |    | +--------+ |      |
-|   +------------+    +------------+    +------------+      |
-|                                                           |
+| 📦 Kubernetes Cluster |
+| |
+| +------------+ +------------+ +------------+ |
+| | Node 1 | | Node 2 | | Node 3 | |
+| | | | | | | |
+| | [Pod: D] | | [Pod: D] | | [Pod: D] | |
+| | | | | | | |
+| +------------+ +------------+ +------------+ |
+| |
 +-----------------------------------------------------------+
 ---
 
@@ -498,6 +497,9 @@ An **initContainer** is a special type of container in a Kubernetes Pod that run
 3. **Copying configuration** or **secrets** from a secure location
 4. **Setting permissions** on shared volumes before the main app starts
 
+---
+
+```
 ---
 
 ```
