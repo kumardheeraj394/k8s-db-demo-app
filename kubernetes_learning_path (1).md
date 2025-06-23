@@ -749,7 +749,7 @@ rules:
 ---
 
 ```
-👤 Service Accounts
+##👤 Service Accounts
 Service accounts are used by pods to authenticate to the API server.
 
 Each pod can use a specific service account
@@ -764,7 +764,7 @@ metadata:
 ---
 
 ```
-🌐 Network Policies
+##🌐 Network Policies
 Define how pods communicate with each other and with external services.
 
 Control ingress and egress traffic to pods
@@ -787,7 +787,7 @@ spec:
 ---
 
 ```
-🛡️ Pod Security Policies (Deprecated → Use PSA)
+##🛡️ Pod Security Policies (Deprecated → Use PSA)
 Note: PodSecurityPolicy (PSP) has been deprecated. Use Pod Security Admission (PSA) instead.
 
 Restrict what pods can do (e.g., running as root, host networking, volume types)
@@ -801,14 +801,14 @@ kubectl label namespace dev pod-security.kubernetes.io/enforce=restricted
 
 ```
 
-🧠 Best Practices
-🔒 Use least-privilege access
+##🧠 Best Practices
+##🔒 Use least-privilege access
 
-📦 Isolate workloads with namespaces and NetworkPolicies
+##📦 Isolate workloads with namespaces and NetworkPolicies
 
-🧪 Regularly audit access and policies
+##🧪 Regularly audit access and policies
 
-🚫 Avoid running containers as root
+##🚫 Avoid running containers as root
 
 ---
 
