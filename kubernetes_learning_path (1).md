@@ -209,6 +209,37 @@ spec:
 ---
 
 ```
+# 📦 Persistent Volume (PV)
+
+### 📘 Definition  
+A **cluster-level resource** that provides storage. Admins can provision it manually or via a storage plugin.
+
+
+
+### 🔧 Use Case  
+- Shared storage   
+- Pre-provisioned disk space
+
+
+---
+
+### 📄 Example
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-example
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /mnt/data
+
+---
 
 
 🔁 Summary Comparison Table
