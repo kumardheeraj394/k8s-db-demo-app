@@ -242,7 +242,37 @@ spec:
 ---
 
 ```
+# 📄 Persistent Volume Claim (PVC)
 
+### 📘 Definition  
+A **request for storage** by a user or developer. It binds to an available PersistentVolume (PV) matching its requirements.
+
+
+
+### 🔧 Use Case  
+- Abstracts storage backend    
+- Users don't need to know how/where storage is provisioned
+
+
+---
+
+
+### 📄 Example
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-example
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+
+```
 
 🔁 Summary Comparison Table
 | Type                    | Volatile | Node-Specific | Shared Across Pods | Backed By Host/Cloud | Auto-Provisioned |
@@ -257,6 +287,7 @@ spec:
 
 ```
 ## 7. ResourceQuota
+---
 
 ✅ What is a ResourceQuota?
 A ResourceQuota is a Kubernetes object used to limit the amount of resources (like CPU, memory, storage, pods, etc.) that can be consumed in a namespace.
