@@ -9,7 +9,7 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 
 1. Basics & Core Concepts  
 2. Kubernetes Installation & Setup  
-3. Pods, ReplicaSets, Deployments.readness probe  
+3. Pods, ReplicaSets, Deployments.readiness probe  
 4. Services & Networking  
 5. Config & Secrets Management  
 6. Volumes & Storage
@@ -81,7 +81,7 @@ Benefits include scalability, self-healing, automated rollouts, and easy managem
 
 ---
 
-## 3. Pods, ReplicaSets, Deployments, Radiness probe
+## 3. Pods, ReplicaSets, Deployments, Readiness probe
 
 - **Pods:** Smallest deployable unit; can contain multiple containers.  
 - **Pod Lifecycle:** Pending → Running → Succeeded / Failed → Unknown  
