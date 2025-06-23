@@ -692,6 +692,9 @@ spec:
 ```bash
 kubectl taint nodes node1 key=env:NoSchedule
 Pod YAML with Toleration:
+---
+
+```
 
 yaml
 
@@ -708,10 +711,16 @@ spec:
     operator: "Equal"
     value: "production"
     effect: "NoSchedule"
+---
+
+```   
 📈 Horizontal Pod Autoscaler (HPA)
 Scales the number of pod replicas based on resource usage (e.g., CPU).
 
 Create a Deployment:
+---
+
+```
 
 yaml
 
@@ -737,6 +746,9 @@ spec:
             cpu: "100m"
           limits:
             cpu: "200m"
+---
+
+```            
 Create HPA:
 
 yaml
@@ -759,6 +771,9 @@ spec:
       target:
         type: Utilization
         averageUtilization: 50
+---
+
+```
 📊 Vertical Pod Autoscaler (VPA)
 Auto-adjusts CPU/memory requests and limits of a pod.
 
@@ -777,6 +792,9 @@ spec:
     name: nginx-deployment
   updatePolicy:
     updateMode: "Auto"
+---
+
+```    
 🧱 Custom Resource Definitions (CRDs)
 Create a new Kubernetes resource type.
 
@@ -818,6 +836,9 @@ metadata:
   name: sample-db
 spec:
   size: 3
+---
+
+```
 🤖 Operators
 An Operator watches for CRDs and performs operations on them.
 
@@ -833,6 +854,9 @@ metadata:
   name: demo-db
 spec:
   size: 2
+---
+
+```  
 What the Operator does:
 
 ✅ On creation: Deploys a StatefulSet of 2 MySQL instances.
