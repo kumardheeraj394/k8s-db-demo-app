@@ -630,6 +630,12 @@ spec:
 
 ### 🚫 Taints and ✅ Tolerations
 
+| Term           | मतलब                                  |
+| -------------- | ------------------------------------- |
+| **Taint**      | Node पर लगाया गया रोक                 |
+| **Toleration** | Pod को दी गई अनुमति उस रोक को सहने की |
+
+
 **Taints:** Prevent pods from being scheduled on specific nodes.  
 **Tolerations:** Allow exceptions to taints.
 
@@ -639,8 +645,7 @@ kubectl taint nodes node1 key=env:NoSchedule
 Pod YAML with Toleration:
 
 yaml
-Copy
-Edit
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -660,8 +665,7 @@ Scales the number of pod replicas based on resource usage (e.g., CPU).
 Create a Deployment:
 
 yaml
-Copy
-Edit
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -687,8 +691,7 @@ spec:
 Create HPA:
 
 yaml
-Copy
-Edit
+
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -713,8 +716,7 @@ Auto-adjusts CPU/memory requests and limits of a pod.
 VPA YAML:
 
 yaml
-Copy
-Edit
+
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
@@ -732,8 +734,7 @@ Create a new Kubernetes resource type.
 CRD YAML (MySQLCluster):
 
 yaml
-Copy
-Edit
+
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -761,8 +762,7 @@ spec:
 Sample Custom Resource:
 
 yaml
-Copy
-Edit
+
 apiVersion: myorg.com/v1
 kind: MySQLCluster
 metadata:
@@ -777,8 +777,7 @@ Operator behavior is implemented as code (usually in Go or Python).
 MySQLCluster Custom Resource:
 
 yaml
-Copy
-Edit
+
 apiVersion: myorg.com/v1
 kind: MySQLCluster
 metadata:
