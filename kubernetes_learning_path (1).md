@@ -182,6 +182,32 @@ Mounts a file or directory **from the host node’s filesystem** into the Pod.
 - Accessing system logs   
 - Accessing hardware or system-level files
 
+ 
+---
+
+### 📄 Example
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostpath-example
+spec:
+  containers:
+  - name: viewer
+    image: busybox
+    command: ["sh", "-c", "cat /host/log/syslog || sleep 3600"]
+    volumeMounts:
+    - mountPath: /host/log
+      name: host-logs
+      readOnly: true
+  volumes:
+  - name: host-logs
+    hostPath:
+      path: /var/log
+      type: Directory
+ 
+
 
 🔁 Summary Comparison Table
 | Type                    | Volatile | Node-Specific | Shared Across Pods | Backed By Host/Cloud | Auto-Provisioned |
