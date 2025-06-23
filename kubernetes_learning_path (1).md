@@ -273,6 +273,35 @@ spec:
 ---
 
 ```
+# 🏷️ StorageClass
+
+### 📘 Definition  
+Defines **different types of storage classes** (e.g., SSD, HDD), and how Kubernetes should provision them.
+
+
+
+### 🔧 Use Case  
+- Fast vs slow storage (SSD vs HDD)    
+- Automatic dynamic provisioning
+
+
+---
+
+
+### 📄 Example
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: fast-storage
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+
+---
+
+```
 
 🔁 Summary Comparison Table
 | Type                    | Volatile | Node-Specific | Shared Across Pods | Backed By Host/Cloud | Auto-Provisioned |
@@ -286,8 +315,8 @@ spec:
 ---
 
 ```
-## 7. ResourceQuota
----
+# 7. ResourceQuota
+
 
 ✅ What is a ResourceQuota?
 A ResourceQuota is a Kubernetes object used to limit the amount of resources (like CPU, memory, storage, pods, etc.) that can be consumed in a namespace.
