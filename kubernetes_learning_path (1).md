@@ -755,7 +755,7 @@ spec:
             cpu: "200m"
 ---
 
-```            
+```         
 Create HPA:
 
 yaml
