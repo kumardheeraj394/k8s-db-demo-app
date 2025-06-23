@@ -137,16 +137,21 @@ kubectl logs <pod-name> -n <namespace>
 
 ---
 
+# 📦 Kubernetes Storage Concepts Guide
+
+---
+
 ## 📁 emptyDir
 
-**Definition**  
-A temporary volume that is created when a Pod starts and deleted when the Pod stops.
+### 📘 Definition  
+A temporary directory that **exists as long as the Pod is running**. It's deleted when the Pod is removed.
 
-**Use Cases**  
-- Sharing files between containers in the same Pod  
-- Temporary scratch space (e.g., cache)
+### 🔧 Use Case  
+- Scratch space for processing data
+- Sharing files between containers in the same Pod
 
-**Example**
+### 📄 Example
+
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -163,22 +168,20 @@ spec:
   volumes:
   - name: temp-storage
     emptyDir: {}
----
 
-## 🖥️ hostPath
 
-**Definition**  
-Mounts a file or directory from the host node’s filesystem into a Pod.
+📘 Definition
+Mounts a file or directory from the host node’s filesystem into the Pod.
 
-> ⚠️ **Use with caution**: Can compromise node security if misused. Useful for node-level agents or diagnostic tools.
+⚠️ Warning: Can compromise node security if misused. Use mainly for debugging or node-level access.
 
-**Use Cases**  
-- Accessing host logs  
-- Accessing GPU devices or system-level info
+🔧 Use Cases
+Accessing system logs
 
-**Example**
+Accessing hardware or system-level files
 
-```yaml
+📄 Example
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -197,6 +200,7 @@ spec:
     hostPath:
       path: /var/log
       type: Directory
+
 
 📦 Persistent Volume (PV)
 Definition:
