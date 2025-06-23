@@ -673,9 +673,6 @@ spec:
 ---
 
 ```
----
-
-```
 
 ## 17. CI/CD Integration
 
