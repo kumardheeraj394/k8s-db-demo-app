@@ -171,6 +171,18 @@ spec:
 ---
 
 ```
+# 📁 hostPath
+
+### 📘 Definition  
+Mounts a file or directory **from the host node’s filesystem** into the Pod.
+⚠️ **Warning**: Can compromise node security if misused. Use mainly for debugging or node-level access.
+
+
+### 🔧 Use Case  
+- Accessing system logs   
+- Accessing hardware or system-level files
+
+
 🔁 Summary Comparison Table
 | Type                    | Volatile | Node-Specific | Shared Across Pods | Backed By Host/Cloud | Auto-Provisioned |
 | ----------------------- | -------- | ------------- | ------------------ | -------------------- | ---------------- |
