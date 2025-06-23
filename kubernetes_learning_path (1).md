@@ -823,9 +823,12 @@ roleRef:
 ## Notes
 - `apiGroups: [""]` refers to the **core API group**, e.g., `pods`, `services`.
 - `apiGroups: ["apps"]` is used for resources like `deployments`, `statefulsets`.
+  
 ---
 
 ```
+---
+
 ##👤 Service Accounts
 Service accounts are used by pods to authenticate to the API server.
 
