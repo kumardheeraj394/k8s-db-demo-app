@@ -723,14 +723,23 @@ spec:
 ---
 
 ```   
-📈 Horizontal Pod Autoscaler (HPA)
-Scales the number of pod replicas based on resource usage (e.g., CPU).
+# 📈 Horizontal Pod Autoscaler (HPA)
 
-Create a Deployment:
+The **Horizontal Pod Autoscaler** (HPA) automatically scales the number of **pod replicas** in a Deployment, ReplicaSet, or StatefulSet based on observed resource usage such as **CPU** or **memory**.
+
 ---
 
-yaml
+## ✅ What It Does
 
+- Monitors CPU/memory usage (or custom metrics)
+- Increases or decreases the number of pods accordingly
+- Helps apps handle dynamic workloads efficiently
+
+---
+
+## ⚙️ Step 1: Create a Deployment
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -755,7 +764,7 @@ spec:
             cpu: "200m"
 ---
 
-```         
+```  
 Create HPA:
 
 yaml
