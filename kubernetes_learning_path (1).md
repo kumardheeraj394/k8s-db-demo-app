@@ -796,10 +796,26 @@ spec:
 ---
 
 ```
-📊 Vertical Pod Autoscaler (VPA)
-Auto-adjusts CPU/memory requests and limits of a pod.
+# 📊 Vertical Pod Autoscaler (VPA)
 
-VPA YAML:
+The **Vertical Pod Autoscaler (VPA)** automatically adjusts the **CPU and memory requests/limits** of pods based on usage over time.
+
+Unlike the **Horizontal Pod Autoscaler (HPA)**, which changes the number of pod replicas, the VPA modifies the **resource allocation** of each pod.
+
+---
+
+## ✅ What It Does
+
+- Recommends or sets optimized CPU and memory values
+- Helps prevent under- or over-provisioning
+- Can be used in 3 modes:
+  - `"Off"` – just provides recommendations
+  - `"Auto"` – automatically updates pod resources (will restart pods)
+  - `"Initial"` – sets resources only at pod startup
+
+---
+
+## 📄 Example VPA YAML
 
 ```yaml
 apiVersion: autoscaling.k8s.io/v1
@@ -809,25 +825,41 @@ metadata:
 spec:
   targetRef:
     apiVersion: "apps/v1"
-    kind: Deployment
-    name: nginx-deployment
+    kind:       Deployment
+    name:       nginx-deployment
   updatePolicy:
     updateMode: "Auto"
+
 ---
 
 ```    
-🧱 Custom Resource Definitions (CRDs)
-Create a new Kubernetes resource type.
+# 🧩 Custom Resource Definitions (CRDs)
 
-CRD YAML (MySQLCluster):
+## ✅ What are CRDs?
+
+**Custom Resource Definitions (CRDs)** allow you to extend the Kubernetes API by defining your **own resource types**.
+
+You can create new objects — like `Database`, `KafkaCluster`, `BackupJob`, etc. — and manage them just like built-in Kubernetes objects.
+
+---
+
+## 📘 Why Use CRDs?
+
+- Define **custom Kubernetes objects** specific to your application domain
+- Used in combination with **operators/controllers** to build automation
+- Enables **declarative APIs** for managing complex infrastructure
+
+---
+
+## 🧾 Example: Define a CRD
+
 ```yaml
-
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: mysqlclusters.myorg.com
+  name: crontabs.stable.example.com
 spec:
-  group: myorg.com
+  group: stable.example.com
   versions:
     - name: v1
       served: true
@@ -839,13 +871,18 @@ spec:
             spec:
               type: object
               properties:
-                size:
-                  type: integer
+                schedule:
+                  type: string
+                image:
+                  type: string
   scope: Namespaced
   names:
-    plural: mysqlclusters
-    singular: mysqlcluster
-    kind: MySQLCluster
+    plural: crontabs
+    singular: crontab
+    kind: CronTab
+    shortNames:
+    - ct
+
 ---
 
 ```  
