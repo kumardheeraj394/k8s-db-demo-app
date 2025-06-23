@@ -722,6 +722,94 @@ Use restartPolicy: OnFailure or Never inside Job specs
 - **Network Policies**  
 - **Pod Security Policies**
 
+
+Kubernetes provides a set of features to **secure your cluster**, control access, and isolate workloads. This includes **Role-Based Access Control (RBAC)**, **Service Accounts**, **Network Policies**, and **Pod Security**.
+
+---
+
+## ✅ Key Security Components
+
+### 🔑 Role-Based Access Control (RBAC)
+
+RBAC defines **who can do what** within the cluster.
+
+- **Roles** define rules (verbs, resources, namespaces)
+- **RoleBindings** assign roles to users or service accounts
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: dev
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+---
+
+```
+👤 Service Accounts
+Service accounts are used by pods to authenticate to the API server.
+
+Each pod can use a specific service account
+
+Useful for controllers, jobs, or apps interacting with the Kubernetes API  
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-bot
+
+---
+
+```
+🌐 Network Policies
+Define how pods communicate with each other and with external services.
+
+Control ingress and egress traffic to pods
+
+Implement security boundaries at the network level
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend
+spec:
+  podSelector:
+    matchLabels:
+      role: frontend
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: backend
+---
+
+```
+🛡️ Pod Security Policies (Deprecated → Use PSA)
+Note: PodSecurityPolicy (PSP) has been deprecated. Use Pod Security Admission (PSA) instead.
+
+Restrict what pods can do (e.g., running as root, host networking, volume types)
+
+PSA operates at namespace level with labels: privileged, baseline, restricted
+
+```yaml
+
+kubectl label namespace dev pod-security.kubernetes.io/enforce=restricted
+---
+
+```
+
+🧠 Best Practices
+🔒 Use least-privilege access
+
+📦 Isolate workloads with namespaces and NetworkPolicies
+
+🧪 Regularly audit access and policies
+
+🚫 Avoid running containers as root
+
 ---
 
 ```
