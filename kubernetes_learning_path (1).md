@@ -661,9 +661,6 @@ spec:
 ---
 
 ```
----
-
-```
 
 ## 16. Observability: Logging & Monitoring
 
@@ -676,9 +673,6 @@ spec:
 ---
 
 ```
----
-
-```
 
 ## 17. CI/CD Integration
 
@@ -686,9 +680,6 @@ spec:
 - Jenkins + Kubernetes pipelines  
 - GitHub Actions integration with Kubernetes
 
----
-
-```
 ---
 
 ```
@@ -856,6 +847,8 @@ metadata:
 spec:
   size: 3
 ---
+
+```  
 🤖 Operators
 An Operator watches for CRDs and performs operations on them.
 
@@ -864,7 +857,7 @@ Operator behavior is implemented as code (usually in Go or Python).
 MySQLCluster Custom Resource:
 
 yaml
-
+---
 apiVersion: myorg.com/v1
 kind: MySQLCluster
 metadata:
@@ -885,10 +878,7 @@ What the Operator does:
 The Operator is deployed as a Deployment in the cluster, continuously watching the CRD.
 ---
 
-```
----
-
-```
+```  
 
 ## 19. Real World Scenarios / Projects
 ---
@@ -899,5 +889,7 @@ The Operator is deployed as a Deployment in the cluster, continuously watching t
 - Backup & disaster recovery strategies
 
 ---
+
+```  
 
 *Happy Kubernetes learning! 🚀*
