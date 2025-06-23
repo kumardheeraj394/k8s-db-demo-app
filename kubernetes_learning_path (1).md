@@ -182,6 +182,8 @@ spec:
             name: my-app-service
             port:
               number: 80
+```
+
 ---
 
 🧠 Summary
