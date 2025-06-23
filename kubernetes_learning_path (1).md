@@ -206,7 +206,9 @@ spec:
     hostPath:
       path: /var/log
       type: Directory
- 
+---
+
+```
 
 
 🔁 Summary Comparison Table
