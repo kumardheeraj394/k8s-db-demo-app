@@ -315,6 +315,7 @@ parameters:
 ---
 
 ```
+
 # 7. ResourceQuota
 
 
@@ -336,7 +337,12 @@ Storage per PVC
 
 Custom resource usage (like GPUs)
 
-🔧 Example YAML – Limit CPU, Memory, and Pod Count
+
+---
+
+### 📄 🔧 Example YAML – Limit CPU, Memory, and Pod Count
+
+```yaml
 apiVersion: v1
 kind: ResourceQuota
 metadata:
