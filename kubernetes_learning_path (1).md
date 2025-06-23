@@ -556,7 +556,7 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ## ✳️ **12. Job and CronJob**
 
-# ✳️ 12. Job and CronJob
+
 
 Kubernetes provides two important workload types for **running tasks** that aren't long-running services:
 
