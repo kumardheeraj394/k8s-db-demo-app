@@ -302,6 +302,74 @@ parameters:
 ---
 
 ```
+# ⚙️ Dynamic Provisioning
+
+## ✅ What Is It?
+
+**Dynamic Provisioning** allows Kubernetes to **automatically create PersistentVolumes (PVs)** when a **PersistentVolumeClaim (PVC)** is created — eliminating the need for manual pre-provisioning.
+
+> This is made possible by associating a PVC with a **StorageClass**.
+
+---
+
+## 📘 Why It Matters
+
+Without dynamic provisioning, cluster admins must manually create matching PVs before a developer can use them via PVCs.
+
+With dynamic provisioning:
+- PVC triggers automatic PV creation
+- Based on parameters in the associated StorageClass
+- Ideal for cloud-native and automated environments
+
+---
+
+## 📄 Example: PVC With Dynamic Provisioning
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dynamic-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: fast-storage
+---
+
+```
+
+🏷️ Corresponding StorageClass
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: fast-storage
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+---
+
+```
+🧠 Key Points
+storageClassName in PVC must match a defined StorageClass
+
+provisioner in StorageClass determines backend (e.g., AWS EBS, GCE PD, etc.)
+
+Kubernetes provisions the PV on demand, using the StorageClass's settings
+
+| Feature              | Manual PVs | Dynamic PVs |
+| -------------------- | ---------- | ----------- |
+| Admin Setup Required | ✅ Yes      | ❌ No        |
+| Automated Creation   | ❌ No       | ✅ Yes       |
+| Uses StorageClass    | ❌ Optional | ✅ Required  |
+| Ideal For            | On-prem    | Cloud/CI-CD |
+
+---
+
+```
 
 🔁 Summary Comparison Table
 | Type                    | Volatile | Node-Specific | Shared Across Pods | Backed By Host/Cloud | Auto-Provisioned |
