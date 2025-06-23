@@ -131,6 +131,8 @@ readinessProbe:
     port: 8080
   initialDelaySeconds: 5
   periodSeconds: 10
+```
+---
 # 📦 Kubernetes Deployment with Readiness Probe
 
 This document provides an example of a Kubernetes `Deployment` configuration that uses an HTTP readiness probe to determine when the application is ready to receive traffic.
@@ -174,6 +176,7 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 10
 ```
+---
 ## 🔍 Explanation
 
 - **replicas**: 2 pods will be created for high availability.
