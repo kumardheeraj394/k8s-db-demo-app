@@ -9,7 +9,7 @@ A comprehensive guide to learning Kubernetes from basics to advanced concepts, i
 
 1. Basics & Core Concepts  
 2. Kubernetes Installation & Setup  
-3. Pods, ReplicaSets, Deployments  
+3. Pods, ReplicaSets, Deployments.readness probe  
 4. Services & Networking  
 5. Config & Secrets Management  
 6. Volumes & Storage
@@ -81,7 +81,7 @@ Benefits include scalability, self-healing, automated rollouts, and easy managem
 
 ---
 
-## 3. Pods, ReplicaSets, Deployments
+## 3. Pods, ReplicaSets, Deployments, Radiness probe
 
 - **Pods:** Smallest deployable unit; can contain multiple containers.  
 - **Pod Lifecycle:** Pending → Running → Succeeded / Failed → Unknown  
@@ -95,6 +95,95 @@ kubectl logs <pod-name> -n <namespace>
 
 - **ReplicaSet & Self-healing:** Ensures desired number of pod replicas are running, replaces failed pods automatically.  
 - **Deployment Object:** Manages ReplicaSets and provides declarative updates, supports rolling updates and rollbacks.
+
+  # 📘 Kubernetes Readiness Probes
+
+## ✅ What is a Readiness Probe?
+
+A **readiness probe** tells Kubernetes **when a container is ready to accept traffic**. This ensures traffic is only routed to containers that are fully initialized and ready to serve.
+
+---
+
+## 🧠 Why Use Readiness Probes?
+
+- Prevent routing traffic to pods that are not yet ready (e.g., still initializing).
+- If the probe fails, the pod is removed from the **Service endpoint** list temporarily.
+- It improves reliability and prevents application errors during startup.
+
+---
+
+## 🔍 Types of Readiness Probes
+
+| Type        | Description                                              |
+|-------------|----------------------------------------------------------|
+| `httpGet`   | Performs an HTTP GET request to a specified path/port.   |
+| `tcpSocket` | Opens a TCP connection to a specified port.              |
+| `exec`      | Executes a command inside the container and checks result.|
+
+---
+
+## 🧪 Example (HTTP Readiness Probe)
+
+```yaml
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 10
+# 📦 Kubernetes Deployment with Readiness Probe
+
+This document provides an example of a Kubernetes `Deployment` configuration that uses an HTTP readiness probe to determine when the application is ready to receive traffic.
+
+---
+
+## ✅ Purpose of Readiness Probe
+
+The readiness probe ensures that the application pod is only added to the service endpoints when it is fully ready to handle requests. If the readiness check fails, Kubernetes will not route traffic to that pod.
+
+---
+
+## 📄 Example Deployment YAML
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp-container
+        image: kumardheeraj394/myapp:latest   # Replace with your Docker image
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+```
+## 🔍 Explanation
+
+- **replicas**: 2 pods will be created for high availability.
+
+- **readinessProbe**:
+  - **httpGet**: Probes the `/ready` path to check if the application is ready.
+  - **port**: Uses container port `8080` to perform the check.
+  - **initialDelaySeconds**: Kubernetes waits for 5 seconds after the container starts before performing the first readiness check.
+  - **periodSeconds**: The readiness probe runs every 10 seconds to monitor the container's readiness.
+
 
 ---
 
