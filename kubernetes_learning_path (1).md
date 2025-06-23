@@ -139,15 +139,13 @@ kubectl logs <pod-name> -n <namespace>
 
 # 📦 Kubernetes Storage Concepts Guide
 
----
-
-## 📁 emptyDir
+# 📁 emptyDir
 
 ### 📘 Definition  
 A temporary directory that **exists as long as the Pod is running**. It's deleted when the Pod is removed.
 
 ### 🔧 Use Case  
-- Scratch space for processing data
+- Scratch space for processing data  
 - Sharing files between containers in the same Pod
 
 ### 📄 Example
@@ -170,18 +168,25 @@ spec:
     emptyDir: {}
 
 
-📘 Definition
-Mounts a file or directory from the host node’s filesystem into the Pod.
+---
 
-⚠️ Warning: Can compromise node security if misused. Use mainly for debugging or node-level access.
+### 📄 **02-hostPath.md**
 
-🔧 Use Cases
-Accessing system logs
+```markdown
+# 🖥️ hostPath
 
-Accessing hardware or system-level files
+### 📘 Definition  
+Mounts a file or directory **from the host node’s filesystem** into the Pod.
 
-📄 Example
+> ⚠️ **Warning**: Can compromise node security if misused. Use mainly for debugging or node-level access.
 
+### 🔧 Use Cases  
+- Accessing system logs  
+- Accessing hardware or system-level files
+
+### 📄 Example
+
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -202,32 +207,34 @@ spec:
       type: Directory
 
 
-📦 Persistent Volume (PV)
-Definition:
-A cluster-level resource representing a piece of storage in the cluster that has been provisioned manually or by a storage plugin.
+---
 
-Use Case:
+### 📄 **04-persistent-volume-claim.md**
 
-Pre-created storage by admins
+```markdown
+# 📄 Persistent Volume Claim (PVC)
 
-Backed by NFS, cloud block storage, etc.
+### 📘 Definition  
+A **request for storage** by a user or developer. It binds to an available PersistentVolume (PV) matching its requirements.
 
-Example:
+### 🔧 Use Case  
+- Abstracts storage backend  
+- Users don't need to know how/where storage is provisioned
+
+### 📄 Example
+
 ```yaml
-
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-  name: pv-example
+  name: pvc-example
 spec:
-  capacity:
-    storage: 1Gi
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: /mnt/data
----
+  resources:
+    requests:
+      storage: 1Gi
+
 
 📄 Persistent Volume Claim (PVC)
 Definition:
