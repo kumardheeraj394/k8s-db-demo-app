@@ -765,10 +765,15 @@ spec:
 ---
 
 ```  
-Create HPA:
----
-yaml
+# ⚙️ Create Horizontal Pod Autoscaler (HPA)
 
+This example shows how to create an HPA that **scales a Deployment named `nginx-deployment`** based on CPU usage.
+
+---
+
+## 📄 HPA YAML Definition
+
+```yaml
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
