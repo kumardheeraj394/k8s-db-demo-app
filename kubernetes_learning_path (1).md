@@ -115,6 +115,93 @@ kubectl logs <pod-name> -n <namespace>
 - **Headless Service:** No cluster IP, used for direct pod access (e.g., StatefulSets).  
 - **Ingress & Network Policies:** Manage external access and network traffic rules.
 
+# 🌐 Ingress in Kubernetes
+
+## ✅ What is Ingress?
+
+An **Ingress** is a Kubernetes **API object** that manages **external HTTP and HTTPS access** to services within a cluster.
+
+Ingress allows:
+- 🌐 **Host-based routing** (e.g., `api.example.com`, `blog.example.com`)
+- 📁 **Path-based routing** (e.g., `/login`, `/blog`)
+- ⚖️ **Load balancing**
+- 🔐 **SSL/TLS termination**
+
+---
+
+## ⚙️ How Ingress Works
+
+To use Ingress, you must deploy an **Ingress Controller** inside your Kubernetes cluster.
+
+### 🔄 Ingress Workflow
+
+Client--> Domain (DNS)-->Ingress Controller (e.g., NGINX, Istio)-->Ingress Resource (routing rules)-->Kubernetes Service-->Deployment (Pods)-->Access the application
+
+
+
+---
+
+## 🧠 What is an Ingress Controller?
+
+- An Ingress Controller is the **brain** behind Ingress.
+- It **interprets the Ingress resources** and handles **actual routing** based on the rules.
+- Without an Ingress Controller, Ingress resources do **nothing**.
+
+---
+
+## 🔧 Popular Ingress Controllers
+
+- **NGINX** – most widely used, simple and stable
+- **HAProxy**
+- **Istio Ingress Gateway** – advanced, part of service mesh
+- **Citrix**
+- **Voyager**
+
+> ✨ You can only run **one active ingress controller per resource class**, but you can run **multiple controllers** in the same cluster.
+
+---
+
+## 📄 Example: Ingress Resource YAML
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: example.com
+    http:
+      paths:
+      - path: /app
+        pathType: Prefix
+        backend:
+          service:
+            name: my-app-service
+            port:
+              number: 80
+
+
+🧠 Summary
+Ingress provides external access to services using HTTP/HTTPS.
+
+Needs an Ingress Controller to function.
+
+Ingress Resource defines routing rules.
+
+Common use cases:
+
+Hosting multiple apps on a single IP
+
+Managing SSL/TLS certificates
+
+Controlled access and load balancing
+
+
+  
+
 ---
 
 ## 5. Config & Secrets Management
