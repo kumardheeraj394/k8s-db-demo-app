@@ -241,6 +241,8 @@ spec:
 
 ---
 
+```
+
 
 🔁 Summary Comparison Table
 | Type                    | Volatile | Node-Specific | Shared Across Pods | Backed By Host/Cloud | Auto-Provisioned |
@@ -253,6 +255,7 @@ spec:
 
 ---
 
+```
 ## 7. ResourceQuota
 
 ✅ What is a ResourceQuota?
@@ -296,6 +299,8 @@ limits.memory	Combined memory limits of all pods must not exceed 16 GiB
 
 ---
 
+```
+
 ## 8. Stateful Applications
 
 - **StatefulSets:** Manage stateful applications with stable network IDs and persistent storage.  
@@ -303,6 +308,8 @@ limits.memory	Combined memory limits of all pods must not exceed 16 GiB
 - Common for databases like MongoDB, MySQL clusters.
 
 ---
+
+```
 
 # 9. DaemonSet
 
@@ -328,6 +335,8 @@ When a new node is added, the DaemonSet automatically schedules a pod on it.
 |                                                           |
 +-----------------------------------------------------------+
 ---
+
+```
 
 # 10. Multicontainer Pod and InitContainer in Kubernetes
 
@@ -414,6 +423,8 @@ An **initContainer** is a special type of container in a Kubernetes Pod that run
 
 ---
 
+```
+
 # 11. Static Pod
 
 **Static Pods** are managed directly by the `kubelet` on a node and are not visible through the Kubernetes API server.  
@@ -462,12 +473,16 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ---
 
+```
+
 ## ✳️ **12. Job and CronJob**
 
 - **Jobs:** One-time batch tasks.  
 - **CronJobs:** Scheduled tasks similar to cron.
 
 ---
+
+```
 
 ## 📦 **13. Helm**
 
@@ -477,6 +492,8 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 - Helm Repositories for sharing charts.
 
 ---
+
+```
 
 ## 🔐 **14. Security & RBAC**
 
@@ -553,6 +570,8 @@ spec:
 
 ---
 
+```
+
 ## 16. Observability: Logging & Monitoring
 
 - livenessProbe and readinessProbe for pod health  
@@ -563,6 +582,8 @@ spec:
 
 ---
 
+```
+
 ## 17. CI/CD Integration
 
 - GitOps with ArgoCD  
@@ -570,6 +591,8 @@ spec:
 - GitHub Actions integration with Kubernetes
 
 ---
+
+```
 
 ## 18. Advanced Topics
 
@@ -740,6 +763,9 @@ What the Operator does:
 🧹 On deletion: Cleans up resources.
 
 The Operator is deployed as a Deployment in the cluster, continuously watching the CRD.
+---
+
+```
 
 ## 19. Real World Scenarios / Projects
 ---
