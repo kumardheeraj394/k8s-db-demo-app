@@ -801,8 +801,7 @@ Auto-adjusts CPU/memory requests and limits of a pod.
 
 VPA YAML:
 
-yaml
----
+```yaml
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
@@ -821,8 +820,7 @@ spec:
 Create a new Kubernetes resource type.
 
 CRD YAML (MySQLCluster):
----
-yaml
+```yaml
 
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -853,8 +851,7 @@ spec:
 ```  
 Sample Custom Resource:
 
-yaml
----
+```yaml
 apiVersion: myorg.com/v1
 kind: MySQLCluster
 metadata:
@@ -871,8 +868,7 @@ Operator behavior is implemented as code (usually in Go or Python).
 
 MySQLCluster Custom Resource:
 
-yaml
----
+```yaml
 apiVersion: myorg.com/v1
 kind: MySQLCluster
 metadata:
