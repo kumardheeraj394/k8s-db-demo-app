@@ -556,8 +556,77 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 
 ## ✳️ **12. Job and CronJob**
 
-- **Jobs:** One-time batch tasks.  
-- **CronJobs:** Scheduled tasks similar to cron.
+# ✳️ 12. Job and CronJob
+
+Kubernetes provides two important workload types for **running tasks** that aren't long-running services:
+
+---
+
+## ⚙️ Job
+
+A **Job** creates one or more Pods to **run a batch task to completion**.
+
+✅ Use it for:
+
+- One-time data processing
+- Database migration
+- Sending notifications
+
+### 🧾 Example: Job YAML
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: hello
+        image: busybox
+        command: ["echo", "Hello, Kubernetes!"]
+      restartPolicy: Never
+---
+
+```
+🕒 CronJob
+A CronJob runs Jobs on a scheduled, recurring basis — similar to Unix cron.
+
+✅ Use it for:
+
+Regular backups
+
+Scheduled reports
+
+Cleanup jobs
+
+🧾 Example: CronJob YAML
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-cron
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            command: ["echo", "Scheduled Hello!"]
+          restartPolicy: OnFailure
+---
+
+```
+🧠 Notes
+Jobs run once and ensure the task completes successfully
+
+CronJobs schedule Jobs using standard cron format (minute, hour, day, etc.)
+
+Use restartPolicy: OnFailure or Never inside Job specs
 
 ---
 
