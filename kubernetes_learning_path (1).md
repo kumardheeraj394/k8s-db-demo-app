@@ -182,7 +182,7 @@ spec:
             name: my-app-service
             port:
               number: 80
-
+---
 
 🧠 Summary
 Ingress provides external access to services using HTTP/HTTPS.
