@@ -1189,3 +1189,24 @@ Explore practical Kubernetes use cases and project ideas that reflect real-world
 ```
 
 *Happy Kubernetes learning! 🚀*
+📚 Additional Resources
+Helm Documentation
+
+Kustomize Documentation
+
+Horizontal Pod Autoscaler
+
+Vertical Pod Autoscaler
+
+Network Policies
+
+Pod Security Policies
+
+Istio Documentation
+
+Prometheus Monitoring
+
+EFK Stack for Logging
+---
+
+```
