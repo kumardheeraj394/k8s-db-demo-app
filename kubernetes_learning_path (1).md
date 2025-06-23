@@ -383,9 +383,7 @@ Kubernetes provisions the PV on demand, using the StorageClass's settings
 ---
 
 ```
----
 
-```
 # 7. ResourceQuota
 ### 📘 Definition  
 A **ResourceQuota** is a Kubernetes object used to **limit the amount of resources** (like CPU, memory, storage, pods, etc.) that can be consumed **within a specific namespace**.
