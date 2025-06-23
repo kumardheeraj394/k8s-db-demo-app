@@ -562,6 +562,9 @@ kube-scheduler-kubernetes                  1/1     Running   3 (14d ago)
 ---
 
 ```
+---
+
+```
 
 ## 📦 **13. Helm**
 
@@ -694,8 +697,6 @@ kubectl taint nodes node1 key=env:NoSchedule
 Pod YAML with Toleration:
 ---
 
-```
-
 yaml
 
 apiVersion: v1
@@ -719,8 +720,6 @@ Scales the number of pod replicas based on resource usage (e.g., CPU).
 
 Create a Deployment:
 ---
-
-```
 
 yaml
 
@@ -750,7 +749,7 @@ spec:
 
 ```            
 Create HPA:
-
+---
 yaml
 
 apiVersion: autoscaling/v2
@@ -778,7 +777,7 @@ spec:
 Auto-adjusts CPU/memory requests and limits of a pod.
 
 VPA YAML:
-
+---
 yaml
 
 apiVersion: autoscaling.k8s.io/v1
@@ -799,7 +798,7 @@ spec:
 Create a new Kubernetes resource type.
 
 CRD YAML (MySQLCluster):
-
+---
 yaml
 
 apiVersion: apiextensions.k8s.io/v1
@@ -826,10 +825,13 @@ spec:
     plural: mysqlclusters
     singular: mysqlcluster
     kind: MySQLCluster
+---
+
+```  
 Sample Custom Resource:
 
 yaml
-
+---
 apiVersion: myorg.com/v1
 kind: MySQLCluster
 metadata:
@@ -837,8 +839,6 @@ metadata:
 spec:
   size: 3
 ---
-
-```
 🤖 Operators
 An Operator watches for CRDs and performs operations on them.
 
