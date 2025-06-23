@@ -757,9 +757,9 @@ spec:
 
 ```            
 Create HPA:
----
-yaml
 
+yaml
+---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -785,9 +785,9 @@ spec:
 Auto-adjusts CPU/memory requests and limits of a pod.
 
 VPA YAML:
----
-yaml
 
+yaml
+---
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
