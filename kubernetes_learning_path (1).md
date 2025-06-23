@@ -766,9 +766,9 @@ spec:
 
 ```  
 Create HPA:
-
-yaml
 ---
+yaml
+
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -787,6 +787,7 @@ spec:
       target:
         type: Utilization
         averageUtilization: 50
+
 ---
 
 ```
